@@ -1,0 +1,109 @@
+{
+  "name": "watermark",
+  "version": "0.0.1",
+  "description": "canvas/svg watermark",
+  "main": "index.js",
+  "keywords": [
+    "watermark",
+    "watermark-dom"
+  ],
+  "scripts": {
+    "build": "npm run clear && cross-env NODE_ENV=production webpack --config ./webpack.config.js --color --progress",
+    "dev": "npm run clear && cross-env NODE_ENV=development webpack-dev-server --config ./webpack.config.js",
+    "clear": "rimraf ./dist",
+    "prettier": "prettier --check --write './**/*.{js,jsx,scss,css}' --config ./.prettierrc",
+    "eslint": "npm run eslint:style && npm run eslint:script",
+    "eslint:script": "eslint --fix --ext .ts,.tsx,.js,.jsx ./",
+    "eslint:style": "stylelint --fix 'src/**/*.css' 'src/**/*.less' --syntax less"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js, jsx, css, scss}": [
+      "npm run prettier",
+      "npm run lint-fix",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "githttps://github.com/BrianWalkerToretto/watermark.git"
+  },
+  "author": "https://github.com/BrianWalkerToretto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrianWalkerToretto/watermark/issues"
+  },
+  "homepage": "https://github.com/BrianWalkerToretto/watermark#readme",
+  "dependencies": {
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-decorators": "^7.6.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-arrow-functions": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "@babel/register": "^7.6.2",
+    "@babel/runtime-corejs3": "^7.6.3",
+    "@hot-loader/react-dom": "^16.10.2",
+    "autoprefixer": "^9.7.0",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "core-js": "^3.3.4",
+    "cross-env": "^6.0.3",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-import-resolver-webpack": "^0.11.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.9",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "lint-staged": "^9.4.2",
+    "lodash-webpack-plugin": "^0.11.5",
+    "postcss-loader": "^3.0.0",
+    "postcss-reporter": "^6.0.1",
+    "prettier": "^1.18.2",
+    "react-hot-loader": "^4.12.15",
+    "rimraf": "^3.0.0",
+    "style-loader": "^1.0.0",
+    "stylelint": "^11.1.1",
+    "stylelint-config-prettier": "^6.0.0",
+    "stylelint-config-recommended": "^3.0.0",
+    "terser-webpack-plugin": "^2.2.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "last 2 versions",
+      "ie >= 9",
+      "iOS >= 8",
+      "Android >= 4"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
