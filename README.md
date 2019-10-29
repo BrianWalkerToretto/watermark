@@ -7,4 +7,7 @@ canvas/svg水印
 - [❎] 单元测试jest
 - [❎] cat:cat将读取网址的内容"coveralls": "cat ./coverage/lcov.info | coveralls"
 ### 任务 TODO
-
+- [❎] 防删除
+- [❎] react/vue/js
+- [❎] 暗水印
+- [❎] 性能优化

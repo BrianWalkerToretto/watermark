@@ -1,13 +1,14 @@
 import React from 'react';
+import { getDevicePixelRatio } from './utils/devicePixelRatio'
 import style from './index.less';
 
-export default class WaterMark extends React.Component {
+export default class WaterMark extends React.PureComponent {
   constructor(props){
     super(props);
     this.ratio = 1;
     this.userInfo = {
-      login: 'ads',
-      code: 1231
+      login: props.login,
+      code: props.code
     };
     this.canvas = React.createRef();
     const scope = 50;
@@ -17,9 +18,8 @@ export default class WaterMark extends React.Component {
      *  */
 
     this.ie = !!window['ActiveXObject']; // eslint-disable-line
-    // window.addEventListener('DOMContentLoaded', () => {
-
     this.waterMark();
+
     const waterMark = () => {
       const width = window.innerWidth || document.documentElement.clientWidth || document.documentElement.offsetHeight || document.body.clientWidth;
       const height = window.innerHeight || document.documentElement.clientWidth || document.documentElement.offsetHeight || document.body.clientHeight ;
@@ -33,7 +33,6 @@ export default class WaterMark extends React.Component {
     };
 
     setTimeout(waterMark, 500);
-    // }, false);
   }
 
   render() {
@@ -61,7 +60,7 @@ export default class WaterMark extends React.Component {
 
       return false;
     }
-    this.ratio = this.getRatio();
+    this.ratio = getDevicePixelRatio(ctx);
     this.can.width = this.width * this.ratio;
     this.can.height = this.height * this.ratio;
     this.can.style.width = this.width + 'px';
@@ -146,15 +145,5 @@ export default class WaterMark extends React.Component {
     svg.innerHTML = '';
     svg.appendChild(fragment);
     document.body.appendChild(svg);
-  }
-  getRatio() {
-    const { ctx } = this;
-    // 屏幕的设备像素比
-    const devicePixelRatio = window.devicePixelRatio || 1;
-    // 浏览器在渲染canvas之前存储画布信息的像素比
-    const backingStoreRatio = ctx.webkitBackingStorePixelRatio || ctx.mozBackingStorePixelRatio || ctx.msBackingStorePixelRatio || ctx.oBackingStorePixelRatio || ctx.backingStorePixelRatio || 1;
-    // canvas的实际渲染倍率
-
-    return devicePixelRatio / backingStoreRatio;
   }
 }

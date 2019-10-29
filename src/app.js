@@ -10,7 +10,7 @@ const render = (() => {
   return Component => {
     renderFn(
       <AppContainer>
-        <Component />
+        <Component login="ad" code="12"/>
       </AppContainer>,
       root,
     );
