@@ -1,6 +1,6 @@
 {
   "name": "@brian-walker-toretto/watermark",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "canvas/svg watermark",
   "main": "index.js",
   "keywords": [
@@ -22,10 +22,10 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js, jsx, css, scss}": [
+    "src/**/*.{js, jsx, css, less}": [
       "npm run prettier",
-      "npm run lint-fix",
-      "git add"
+      "npm run eslint",
+      "git add ."
     ]
   },
   "repository": {
@@ -38,10 +38,7 @@
     "url": "https://github.com/BrianWalkerToretto/watermark/issues"
   },
   "homepage": "https://github.com/BrianWalkerToretto/watermark#readme",
-  "dependencies": {
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
@@ -78,6 +75,8 @@
     "postcss-loader": "^3.0.0",
     "postcss-reporter": "^6.0.1",
     "prettier": "^1.18.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "react-hot-loader": "^4.12.15",
     "rimraf": "^3.0.0",
     "style-loader": "^1.0.0",
