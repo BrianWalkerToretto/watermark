@@ -11,7 +11,7 @@ export default {
   mode: isProd ? 'production' : 'development',
   entry: {
     watermark: isProd
-      ? resolve('/src/app')
+      ? resolve('/src')
       : ['react-hot-loader/patch', resolve('/src/app')],
   },
   stats: {
@@ -31,8 +31,9 @@ export default {
     publicPath: './', // 公共路径
     // libraryTarget决定了你的library运行在哪个环境
     libraryTarget: 'umd', // 工具库既可以用commonjs和amd方式使用也可以用script方式引入
+    umdNamedDefine: true,
     library: 'watermark', // library指定的是你require时候的模块名。
-    libraryExport: 'default',
+    libraryExport: 'default'
   },
   resolve: {
     modules: [resolve('/src'), resolve('/node_modules')],

@@ -2,6 +2,7 @@
 import WebpackCommonConfig, { resolve } from './common.config';
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const merge = require('webpack-merge');
+const nodeExternals  = require('webpack-node-externals');
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(WebpackCommonConfig, {
@@ -20,8 +21,7 @@ module.exports = merge(WebpackCommonConfig, {
     //     }
     //   })
   ],
-  externals: {
-    react: 'react',
-    'react-dom': 'react-dom'
-  },
+  externals: [
+    nodeExternals() // 用于排除水波纹库中的react，react-dom等
+  ]
 });
