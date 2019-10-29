@@ -70,14 +70,18 @@ export default {
               modules: {
                 context: resolve('/src'), // 允许为本地标识符名称重新定义基本的加载程序上下文。
                 localIdentName: '[name]__[local]-[hash:base64:5]', // 使用 localIdentName 查询参数配置生成类名
-              },
-            },
+              }
+            }
           },
           {
             loader: 'postcss-loader',
             options: {
               sourceMap: !isProd,
-            },
+              config: {
+                path: 'postcss.config.js'  // 这个得在项目根目录创建此文件
+              }
+
+            }
           },
           {
             loader: 'less-loader',
