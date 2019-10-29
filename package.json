@@ -1,5 +1,5 @@
 {
-  "name": "watermark",
+  "name": "watermark.js",
   "version": "0.0.1",
   "description": "canvas/svg watermark",
   "main": "index.js",
