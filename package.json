@@ -1,8 +1,8 @@
 {
   "name": "@brian-walker-toretto/watermark",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "canvas/svg watermark",
-  "main": "dist/watermark.js",
+  "main": "/dist/watermark.js",
   "keywords": [
     "watermark",
     "watermark-dom"
@@ -75,8 +75,6 @@
     "postcss-loader": "^3.0.0",
     "postcss-reporter": "^6.0.1",
     "prettier": "^1.18.2",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
     "react-hot-loader": "^4.12.15",
     "rimraf": "^3.0.0",
     "style-loader": "^1.0.0",
