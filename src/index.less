@@ -1,12 +1,13 @@
+@zIndex: 99;
 .waterMark {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
-  z-index: 0;
+  z-index: @zIndex;
   pointer-events: none;
   /* IE 6/7/8/9/10 */
-  z-index: -1\8\9\0;
-  z-index/*\**/: -1\9;
+  z-index: -@zIndex\8\9\0;
+  z-index/*\**/: -@zIndex\9;
 }

@@ -1,7 +1,13 @@
 import React from 'react';
 import { getDevicePixelRatio } from './utils/devicePixelRatio'
 import style from './index.less';
-
+/**
+ * {
+ *  container: dom/selector
+ *  text: string/number,[],{}
+ *  style: object
+ * }
+ */
 export default class WaterMark extends React.PureComponent {
   constructor(props){
     super(props);

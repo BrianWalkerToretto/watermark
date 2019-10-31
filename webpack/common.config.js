@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const TerserPlugin = require('terser-webpack-plugin');
+const { VueLoaderPlugin } = require("vue-loader")
 
 function resolve(dir) {
   return path.join(__dirname, '../', dir);
@@ -31,20 +31,21 @@ export default {
     publicPath: './', // 公共路径
     // libraryTarget决定了你的library运行在哪个环境
     libraryTarget: 'umd', // 工具库既可以用commonjs和amd方式使用也可以用script方式引入
-    umdNamedDefine: true,
+    umdNamedDefine: true, // 会对 UMD 的构建过程中的 AMD 模块进行命名。否则就使用匿名的 define
     library: 'watermark', // library指定的是你require时候的模块名。
     libraryExport: 'default'
   },
   resolve: {
     modules: [resolve('/src'), resolve('/node_modules')],
-    extensions: ['.tsx', '.ts', '.jsx', '.js', '.less'],
+    extensions: ['.tsx', '.ts', '.jsx', '.vue', '.js', '.less'],
     // 针对 Npm 中的第三方模块优先采用 jsnext:main 中指向的 ES6 模块化语法的文件
     mainFields: ['jsnext:main', 'browser', 'main'],
     alias: {
       // react@16.6之后需要，用来修复热更新问题
       'react-dom': '@hot-loader/react-dom',
       // @images,@common,@util,@layout,@include
-      // '@pages': resolve('client/pages')
+      '@utils': resolve('src/utils'),
+      '@styles': resolve('src/styles')
     },
   },
   module: {
@@ -100,63 +101,14 @@ export default {
     new webpack.ProvidePlugin({
       Symbol: resolve('./node_modules/core-js/features/symbol'),
       Set: resolve('./node_modules/core-js/features/set'),
-      Map: resolve('./node_modules/core-js/features/map'),
+      Map: resolve('./node_modules/core-js/features/map')
     }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-      },
+      }
     }),
-  ],
-  // optimization: {
-  //   minimizer: [
-  //     new TerserPlugin({
-  //       // Terser minify options.
-  //       terserOptions: {
-  //         parse: {
-  //           // We want terser to parse ecma 8 code. However, we don't want it
-  //           // to apply any minification steps that turns valid ecma 5 code
-  //           // into invalid ecma 5 code. This is why the 'compress' and 'output'
-  //           // sections only apply transformations that are ecma 5 safe
-  //           ecma: 8,
-  //         },
-  //         compress: {
-  //           ecma: 5,
-  //           // display warnings when dropping unreachable code or unused declarations etc.
-  //           warnings: false,
-  //           // apply certain optimizations to binary nodes
-  //           // Disabled because of an issue with Uglify breaking seemingly valid code:
-  //           // Pending further investigation: https://github.com/mishoo/UglifyJS2/issues/2011
-  //           comparisons: false,
-  //           // inline calls to function with simple/return statement:
-  //           // Disabled because of an issue with Terser breaking valid code:
-  //           // Pending further investigation: https://github.com/terser-js/terser/issues/120
-  //           inline: 2, // inline functions with arguments
-  //         },
-  //         mangle: {
-  //           // Pass true to work around the Safari 10 loop iterator bug "Cannot declare a let variable twice".
-  //           // See also: the safari10 output option.
-  //           safari10: true,
-  //         },
-  //         // Added for profiling in devtools
-  //         keep_classnames: true,
-  //         keep_fnames: true,
-  //         output: {
-  //           ecma: 5,
-  //           // pass true or "all" to preserve all comments, "some" to preserve some comments,
-  //           // a regular expression string (e.g. /^!/) or a function.
-  //           comments: false,
-  //           // escape Unicode characters in strings and regexps (affects directives with non-ascii characters becoming invalid)
-  //           // Turned on because emoji and regex is not minified properly using default
-  //           ascii_only: true,
-  //         },
-  //       },
-  //       // Use multi-process parallel running to improve the build speed.
-  //       //Default number of concurrent runs: os.cpus().length - 1.
-  //       parallel: true,
-  //       cache: true, // Enable file caching
-  //     })
-  //   ]
-  // }
+  ]
 };
+
 export { resolve };
