@@ -23,7 +23,7 @@ export default {
   },
   cache: true,
   profile: true,
-  devtool: isProd ? false : 'inline-source-map', // 控制是否生成，以及如何生成 source map
+  devtool: isProd ? 'cheap-module-source-map' : 'cheap-module-eval-source-map', // 控制是否生成，以及如何生成 source map
   output: {
     path: resolve('/dist'),
     filename: '[name].js', // 输出文件的文件名
@@ -33,7 +33,7 @@ export default {
     libraryTarget: 'umd', // 工具库既可以用commonjs和amd方式使用也可以用script方式引入
     umdNamedDefine: true, // 会对 UMD 的构建过程中的 AMD 模块进行命名。否则就使用匿名的 define
     library: 'watermark', // library指定的是你require时候的模块名。
-    libraryExport: 'default'
+    // libraryExport: 'default' // 移除libraryExport
   },
   resolve: {
     modules: [resolve('/src'), resolve('/node_modules')],
@@ -89,15 +89,29 @@ export default {
             loader: 'less-loader',
             options: {
               sourceMap: !isProd,
-            },
-          },
-        ],
+            }
+          }
+        ]
       },
-    ],
+      {
+        test: /\.vue$/,
+        exclude: /node_modules/,
+        loader: 'vue-loader',
+        include: resolve('/src'),
+        options: {
+          cssModules: {
+            context: resolve('/src'), // 允许为本地标识符名称重新定义基本的加载程序上下文。
+            localIdentName: '[name]---[local]---[hash:base64:5]',
+            camelCase: true
+          }
+        }
+      }
+    ]
   },
   plugins: [
+    new VueLoaderPlugin(),
     // scope hoisting
-    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin(), //  webpack 3
     new webpack.ProvidePlugin({
       Symbol: resolve('./node_modules/core-js/features/symbol'),
       Set: resolve('./node_modules/core-js/features/set'),

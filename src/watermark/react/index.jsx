@@ -1,11 +1,27 @@
 import React from 'react';
-import { getDevicePixelRatio } from './utils/devicePixelRatio'
-import style from './index.less';
+import { getDevicePixelRatio } from '@utils/devicePixelRatio'
+import style from '@styles';
 /**
+ * pages.github.com
  * {
  *  container: dom/selector
  *  text: string/number,[],{}
- *  style: object
+ *  style: {
+ *
+ *  }
+ *  options = {
+ *    x: 20, // 水印起始位置x轴坐标
+      y: 20, // 水印起始位置Y轴坐标
+      rows: 200, // 水印行数
+      cols: 200, // 水印列数
+      color: '#000000', // 水印字体颜色
+      alpha: 0.005, // 水印透明度
+      fontsize: '12px', // 水印字体大小
+      font: '微软雅黑', // 水印字体
+      width: 200, // 水印宽度
+      height: 30, // 水印高度
+      angle: 25 // 水印倾斜度数
+ *  }
  * }
  */
 export default class WaterMark extends React.PureComponent {
@@ -16,6 +32,7 @@ export default class WaterMark extends React.PureComponent {
       login: props.login,
       code: props.code
     };
+    console.log('props', props)
     this.canvas = React.createRef();
     const scope = 50;
     /**
@@ -24,7 +41,6 @@ export default class WaterMark extends React.PureComponent {
      *  */
 
     this.ie = !!window['ActiveXObject']; // eslint-disable-line
-    this.waterMark();
 
     const waterMark = () => {
       const width = window.innerWidth || document.documentElement.clientWidth || document.documentElement.offsetHeight || document.body.clientWidth;
@@ -77,6 +93,7 @@ export default class WaterMark extends React.PureComponent {
     ctx.textAlign = 'center';
     ctx.globalAlpha = 0.8;
     ctx.textBaseline = 'middle';
+    // ctx.globalCompositeOperation = 'none'
     ctx.fillRect(0, 0, this.width, this.height);
     ctx.fillStyle = '#ccc';
     ctx.scale(this.ratio, this.ratio);

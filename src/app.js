@@ -1,7 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import Index from '.';
+import Vue from 'vue';
+// components
+import Index, { VueWaterMark } from '.';
+// 注册组件库
+Vue.config.productionTip = false
+
+new Vue({
+  el: '#app',
+  // render: h => h(VueWaterMark),
+  components: { VueWaterMark },
+  data () {
+    return {
+      value: true,
+      login: 'testUserName',
+      code: 1234567890
+    }
+  },
+})
 
 const render = (() => {
   const root = document.querySelector('#root');

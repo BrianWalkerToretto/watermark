@@ -16,18 +16,6 @@
     "eslint:script": "eslint --fix --ext .ts,.tsx,.js,.jsx ./",
     "eslint:style": "stylelint --fix 'src/**/*.css' 'src/**/*.less' --syntax less"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{js, jsx, css, less}": [
-      "npm run prettier",
-      "npm run eslint",
-      "git add ."
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "githttps://github.com/BrianWalkerToretto/watermark.git"
@@ -55,7 +43,7 @@
     "autoprefixer": "^9.7.0",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
-    "core-js": "^3.3.4",
+    "core-js": "^3.3.5",
     "cross-env": "^6.0.3",
     "css-loader": "^3.2.0",
     "eslint": "^6.6.0",
@@ -83,6 +71,7 @@
     "stylelint": "^11.1.1",
     "stylelint-config-prettier": "^6.0.0",
     "stylelint-config-recommended": "^3.0.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.1",
     "vue-template-compiler": "^2.6.10",

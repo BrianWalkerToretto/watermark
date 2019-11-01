@@ -15,8 +15,8 @@
             "Android >= 4"
           ]
         },
-        "modules": "commonjs",
-        "useBuiltIns": "usage",
+        "modules": false,
+        "useBuiltIns": "entry", // usage
         "corejs": 3,
         "debug": false, // 是否输出启用的plugins列表
         "spec": false, // 是否允许more spec compliant，但可能转译出的代码更慢
