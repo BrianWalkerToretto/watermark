@@ -1,3 +1,10 @@
+/** 方法说明
+ *  @method getDevicePixelRatio
+ *  @description 获取屏幕比
+ *  @param {Canvas.getContext('2d')} [context={}] 回调函数
+ *  @return {Number} 比值
+*/
+
 export const getDevicePixelRatio = (context = {}) => {
   // 屏幕的设备像素比
   const devicePixelRatio = window.devicePixelRatio || 1;

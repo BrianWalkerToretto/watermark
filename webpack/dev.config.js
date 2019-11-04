@@ -12,9 +12,9 @@ module.exports = merge(WebpackCommonConfig, {
   },
   devServer: {
     contentBase: resolve('.'), // 告诉服务器从哪个目录中提供内容
-    ignored: /node_modules/,
-    aggregateTimeout: 300, //监听到变化发生后等300ms再去执行动作，防止文件更新太快导致编译频率太高
-    poll: 1000, //通过不停的询问文件是否改变来判断文件是否发生变化，默认每秒询问1000次
+    // ignored: /node_modules/,
+    // aggregateTimeout: 300, //监听到变化发生后等300ms再去执行动作，防止文件更新太快导致编译频率太高
+    // poll: 1000, //通过不停的询问文件是否改变来判断文件是否发生变化，默认每秒询问1000次
     historyApiFallback: true, // 启用当使用 HTML5 History API 时，任意的 404 响应都可能需要被替代为 index.html。
     publicPath: '/', // 修复output.publicPath问题
     compress: true, // 一切服务都启用 gzip 压缩
