@@ -1,6 +1,6 @@
 {
   "name": "@brian-walker-toretto/watermark",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "canvas/svg watermark",
   "main": "/dist/watermark.js",
   "keywords": [
@@ -14,7 +14,8 @@
     "prettier": "prettier --check --write './**/*.{js,jsx,scss,css}' --config ./.prettierrc",
     "eslint": "npm run eslint:style && npm run eslint:script",
     "eslint:script": "eslint --fix --ext .ts,.tsx,.js,.jsx ./",
-    "eslint:style": "stylelint --fix 'src/**/*.css' 'src/**/*.less' --syntax less"
+    "eslint:style": "stylelint --fix 'src/**/*.css' 'src/**/*.less' --syntax less",
+    "release": "npm run build && npm publish"
   },
   "repository": {
     "type": "git",
