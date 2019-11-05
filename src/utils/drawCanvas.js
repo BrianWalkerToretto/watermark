@@ -2,7 +2,10 @@ export default function drawCanvas() {
   const { ctx } = this;
   this.can.width = this.width * this.ratio;
       this.can.height = this.height * this.ratio;
-      this.can.style = `width: ${this.width}px;height: ${this.height}px;`;
+      // this.can.style = `width: ${this.width}px;height: ${this.height}px;`;
+      // strict 模式下不允许分配到只读属性
+      this.can.style.width = `${this.width - (this.ie ? 8 : 0)}px`;
+      this.can.style.height = `${this.height - (this.ie ? 8 : 0)}px`;
       ctx.beginPath();
       ctx.fillStyle = 'transparent';
       ctx.font = '200 14px 微软雅黑';

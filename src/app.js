@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import Vue from 'vue';
 // components
-import Index, { VueWaterMark } from '.';
+import Index, { VueWaterMark, NativeWaterMark } from '.';
 // 注册组件库
 Vue.config.productionTip = false
 

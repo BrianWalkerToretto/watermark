@@ -1,7 +1,8 @@
 // starter/webpack.config.js
 const os = require('os');
-import WebpackCommonConfig, { resolve } from './common.config';
 import webpack from 'webpack';
+import WebpackCommonConfig, { resolve } from './common.config';
+import getAllWaterMark from './getAllWaterMark'
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const merge = require('webpack-merge');
 // const nodeExternals  = require('webpack-node-externals');
@@ -10,6 +11,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 // const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = merge(WebpackCommonConfig, {
+  entry: getAllWaterMark(resolve('/src/watermark')),
   plugins: [
     new UglifyJSPlugin({
       exclude: /\.min\.js$/, // 过滤掉以".min.js"结尾的文件，我们认为这个后缀本身就是已经压缩好的代码，没必要进行二次压缩
@@ -36,7 +38,7 @@ module.exports = merge(WebpackCommonConfig, {
         }
       },
       extractComments: false, // 移除注释
-      sourceMap: false,
+      sourceMap: true,
       cache: true,
       parallel: os.cpus().length
   }),

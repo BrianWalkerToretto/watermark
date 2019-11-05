@@ -8,6 +8,10 @@ import { canRedraw, drawCanvas, drawSvg } from '@utils/draw';
 import { getDevicePixelRatio } from '@utils/devicePixelRatio';
 import { addEventListen, DOMContentLoaded } from '@utils/eventListener';
 
+window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback){
+  window.setTimeout(callback, 1000 / 60);
+};
+
 export default {
   name: 'WaterMark',
   data() {
@@ -24,8 +28,9 @@ export default {
     },
   },
   beforeCreate: function(){
-    this.ie = !!window['ActiveXObject'];
-    this.draw =  this.ie ? drawSvg : drawCanvas;
+    this.ie = !!window['ActiveXObject'] || 'ActiveXObject' in window; // eslint-disable-line
+    // ie11以下不兼容pointer-event,故使用svg
+    this.draw = !!window['ActiveXObject'] ? drawSvg : drawCanvas;
   },
   created: function(){
     let isLoad = true;

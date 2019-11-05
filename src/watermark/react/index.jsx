@@ -4,6 +4,11 @@ import { canRedraw, drawCanvas, drawSvg } from '@utils/draw';
 import { getDevicePixelRatio } from '@utils/devicePixelRatio';
 import { addEventListen, DOMContentLoaded } from '@utils/eventListener';
 import style from '@styles';
+
+window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback){
+  window.setTimeout(callback, 1000 / 60);
+};
+
 /**
  * pages.github.com
  * {
@@ -38,8 +43,9 @@ export default class WaterMark extends React.PureComponent {
      * 注意：只有ie支持ActiveXObject，但是在ie11中window.ActiveXObject 和 typeof ActiveXObject的值为undefined，只能通过"ActiveXObject" in window来判断浏览器为ie
      * 但是可以通过这个特性来区分ie11和其他ie浏览器
      **/
-    this.ie = !!window['ActiveXObject']; // eslint-disable-line
-    this.draw = this.ie ? drawSvg : drawCanvas;
+    this.ie = !!window['ActiveXObject'] || 'ActiveXObject' in window; // eslint-disable-line
+    // ie11以下不兼容pointer-event,故使用svg
+    this.draw = !!window['ActiveXObject'] ? drawSvg : drawCanvas;
     this.initWaterMark();
     this.loadWaterMark();
   }
