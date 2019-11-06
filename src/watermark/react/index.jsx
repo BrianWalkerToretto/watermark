@@ -1,13 +1,10 @@
 import React from 'react';
 import debounce from '@utils/debounce';
+import requestAnimFrame from '@utils/requestAnimFrame';
 import { canRedraw, drawCanvas, drawSvg } from '@utils/draw';
 import { getDevicePixelRatio } from '@utils/devicePixelRatio';
 import { addEventListen, DOMContentLoaded } from '@utils/eventListener';
 import style from '@styles';
-
-window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback){
-  window.setTimeout(callback, 1000 / 60);
-};
 
 /**
  * pages.github.com
@@ -76,7 +73,7 @@ export default class WaterMark extends React.PureComponent {
   initWaterMark() {
     this.can = this.canvas && this.canvas.current;
     if (!this.can){
-      return requestAnimationFrame(() => {
+      return requestAnimFrame(() => {
         this.initWaterMark();
       });
     }

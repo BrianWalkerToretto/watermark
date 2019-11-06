@@ -1,12 +1,9 @@
 import debounce from '@utils/debounce';
-import style from '@styles';
+import requestAnimFrame from '@utils/requestAnimFrame';
 import { canRedraw, drawCanvas, drawSvg } from '@utils/draw';
 import { getDevicePixelRatio } from '@utils/devicePixelRatio';
 import { addEventListen, DOMContentLoaded } from '@utils/eventListener';
-
-window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback){
-  window.setTimeout(callback, 1000 / 60);
-};
+import style from '@styles';
 
 function NativeWaterMark(props = {}){
   if(!props || typeof props !== 'object'){
@@ -34,7 +31,7 @@ NativeWaterMark.prototype = {
   initWaterMark() {
     this.can = this.canvas;
     if (!this.can){
-      return requestAnimationFrame(() => {
+      return requestAnimFrame(() => {
         this.initWaterMark();
       });
     }

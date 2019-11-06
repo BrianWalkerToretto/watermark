@@ -4,13 +4,10 @@
 
 <script>
 import debounce from '@utils/debounce';
+import requestAnimFrame from '@utils/requestAnimFrame';
 import { canRedraw, drawCanvas, drawSvg } from '@utils/draw';
 import { getDevicePixelRatio } from '@utils/devicePixelRatio';
 import { addEventListen, DOMContentLoaded } from '@utils/eventListener';
-
-window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback){
-  window.setTimeout(callback, 1000 / 60);
-};
 
 export default {
   name: 'WaterMark',
@@ -55,7 +52,7 @@ export default {
     initWaterMark() {
       this.can = this.$refs.canvas; // this.$el; $el = name
       if(!this.can){
-        return requestAnimationFrame(() => {
+        return requestAnimFrame(() => {
           this.initWaterMark();
         });
       }
