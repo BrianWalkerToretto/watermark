@@ -4,8 +4,4 @@ import NativeWaterMark from './watermark/native';
 
 export default ReactWaterMark;
 
-export {
-  ReactWaterMark,
-  VueWaterMark,
-  NativeWaterMark
-}
+export { ReactWaterMark, VueWaterMark, NativeWaterMark };

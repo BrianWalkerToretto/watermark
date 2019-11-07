@@ -1,6 +1,7 @@
 {
   "root": true,
   "env": {
+    "node": true,
     "es6": true,
     "browser": true
   },
@@ -9,7 +10,8 @@
     "plugin:react/recommended", // 该插件会导出建议的配置，以强制实施 React 的良好做法。
     "plugin:jsx-a11y/recommended",
     "plugin:prettier/recommended",
-    "prettier/react"
+    "prettier/react",
+    "prettier/vue"
   ],
   "parser": "babel-eslint", // 一个对 Babel 解析器的包装，使其能够与 ESLint 兼容
   "plugins": [
@@ -37,8 +39,11 @@
     "import/resolver": "webpack"
   },
   "globals": {
-    "process": true,
-    "module": true
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+    // "process": true,
+    // "module": true
+    // "require": true
   }
 }
 

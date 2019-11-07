@@ -2,7 +2,7 @@
 const os = require('os');
 import webpack from 'webpack';
 import WebpackCommonConfig, { resolve } from './common.config';
-import getAllWaterMark from './getAllWaterMark'
+import getAllWaterMark from './getAllWaterMark';
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const merge = require('webpack-merge');
 // const nodeExternals  = require('webpack-node-externals');
@@ -38,7 +38,7 @@ module.exports = merge(WebpackCommonConfig, {
   //   nodeExternals()
   // ],
   externals: {
-    react: 'React',
+    react: 'React'
     // 'react-dom': 'ReactDOM',
   },
   optimization: {
@@ -82,7 +82,7 @@ module.exports = merge(WebpackCommonConfig, {
         sourceMap: true,
         cache: true,
         parallel: os.cpus().length
-      }),
+      })
     ]
     // minimizer: [new TerserPlugin()]
   }

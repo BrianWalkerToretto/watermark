@@ -4,15 +4,16 @@
 
 <script>
 import debounce from '@utils/debounce';
-import requestAnimFrame from '@utils/requestAnimFrame';
+import loadWaterMark from '@method/loadWaterMark';
+import initWaterMark from '@method/initWaterMark';
+import getWidthAndHeight from '@utils/getWidthAndHeight';
 import { canRedraw, drawCanvas, drawSvg } from '@utils/draw';
-import { getDevicePixelRatio } from '@utils/devicePixelRatio';
-import { addEventListen, DOMContentLoaded } from '@utils/eventListener';
+import { addEventListen } from '@utils/eventListener';
 
 export default {
   name: 'WaterMark',
   data() {
-    return {}
+    return {};
   },
   props: {
     login: {
@@ -21,63 +22,47 @@ export default {
     },
     code: {
       type: [String, Number],
-      default: '',
-    },
+      default: ''
+    }
   },
-  beforeCreate: function(){
+  beforeCreate: function() {
     this.ie = !!window['ActiveXObject'] || 'ActiveXObject' in window; // eslint-disable-line
     // ie11以下不兼容pointer-event,故使用svg
     this.draw = !!window['ActiveXObject'] ? drawSvg : drawCanvas;
   },
-  created: function(){
-    let isLoad = true;
-    DOMContentLoaded(() => {
-      isLoad && this.waterMark()
-      isLoad = null;
-    });
-    addEventListen('load', () => {
-      isLoad && this.waterMark();
-      isLoad = null;
-    });
+  created: function() {
+    this.initWaterMark();
+    this.loadWaterMark();
   },
-  mounted: function(){
+  mounted: function() {
     const redraw = canRedraw.bind(this);
 
-    // this.waterMark();
-    addEventListen('resize', debounce(() => {
-      redraw() && this.waterMark();
-    }, 200))
+    addEventListen(
+      'resize',
+      debounce(() => {
+        redraw() && this.waterMark();
+      }, 200)
+    );
   },
   methods: {
-    initWaterMark() {
-      this.can = this.$refs.canvas; // this.$el; $el = name
-      if(!this.can){
-        return requestAnimFrame(() => {
-          this.initWaterMark();
-        });
-      }
-      if (this.ctx) return;
-      this.ctx = this.can.getContext('2d'); // eslint-disable-line
-      this.ratio = getDevicePixelRatio(this.ctx);
-      // 每个小块的宽高
-      this.w = 100;
-      this.h = 80;
-      this.waterMark();
-    },
+    loadWaterMark: loadWaterMark,
+    initWaterMark: initWaterMark('waterMark'),
     waterMark() {
-      if (!this.can){
+      if (!this.can) {
         this.initWaterMark();
         return false;
       }
       // 更新屏幕宽高
-      this.width = window.innerWidth || document.documentElement.clientWidth || document.documentElement.offsetHeight || document.body.clientWidth;
-      this.height = window.innerHeight || document.documentElement.clientWidth || document.documentElement.offsetHeight || document.body.clientHeight;
+      const { width, height } = getWidthAndHeight();
+      this.width = width;
+      this.height = height;
       this.draw();
-    },
+    }
   }
-}
+};
+
 </script>
 
 <style lang="less" module scoped>
-@import "~@styles/index.less";
+@import '~@styles/index.less';
 </style>

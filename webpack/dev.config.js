@@ -7,7 +7,7 @@ const merge = require('webpack-merge');
 module.exports = merge(WebpackCommonConfig, {
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      vue$: 'vue/dist/vue.esm.js'
     }
   },
   devServer: {
@@ -37,11 +37,11 @@ module.exports = merge(WebpackCommonConfig, {
       minify: {
         // 压缩HTML文件
         removeComments: true, // 移除HTML中的注释
-        collapseWhitespace: true, // 删除空白符与换行符
+        collapseWhitespace: true // 删除空白符与换行符
       },
       chunksSortMode() {
         return true;
-      },
-    }),
-  ],
+      }
+    })
+  ]
 });

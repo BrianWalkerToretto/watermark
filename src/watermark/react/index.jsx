@@ -1,9 +1,10 @@
 import React from 'react';
 import debounce from '@utils/debounce';
-import requestAnimFrame from '@utils/requestAnimFrame';
+import loadWaterMark from '@method/loadWaterMark';
+import initWaterMark from '@method/initWaterMark';
+import getWidthAndHeight from '@utils/getWidthAndHeight';
 import { canRedraw, drawCanvas, drawSvg } from '@utils/draw';
-import { getDevicePixelRatio } from '@utils/devicePixelRatio';
-import { addEventListen, DOMContentLoaded } from '@utils/eventListener';
+import { addEventListen } from '@utils/eventListener';
 import style from '@styles';
 
 /**
@@ -30,7 +31,9 @@ import style from '@styles';
  * }
  */
 export default class WaterMark extends React.PureComponent {
-  constructor(props){
+  loadWaterMark = loadWaterMark;
+  initWaterMark = initWaterMark('waterMark');
+  constructor(props) {
     super(props);
     this.login = props.login;
     this.code = props.code;
@@ -42,57 +45,35 @@ export default class WaterMark extends React.PureComponent {
      **/
     this.ie = !!window['ActiveXObject'] || 'ActiveXObject' in window; // eslint-disable-line
     // ie11以下不兼容pointer-event,故使用svg
-    this.draw = !!window['ActiveXObject'] ? drawSvg : drawCanvas;
+    this.draw = window['ActiveXObject'] ? drawSvg : drawCanvas;
     this.initWaterMark();
     this.loadWaterMark();
-  }
-  loadWaterMark = () => {
-    let isLoad = true;
-    DOMContentLoaded(() => {
-      isLoad && this.waterMark()
-      isLoad = null;
-    });
-    addEventListen('load', () => {
-      isLoad && this.waterMark();
-      isLoad = null;
-    });
   }
 
   render() {
     return <canvas className={style.waterMark} ref={this.canvas}></canvas>;
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const redraw = canRedraw.bind(this);
 
-    addEventListen('resize', debounce(() => {
-      redraw() && this.waterMark();
-    }, 200))
+    addEventListen(
+      'resize',
+      debounce(() => {
+        redraw() && this.waterMark();
+      }, 200)
+    );
   }
 
-  initWaterMark() {
-    this.can = this.canvas && this.canvas.current;
-    if (!this.can){
-      return requestAnimFrame(() => {
-        this.initWaterMark();
-      });
-    }
-    if (this.ctx) return;
-    this.ctx = this.can.getContext('2d'); // eslint-disable-line
-    this.ratio = getDevicePixelRatio(this.ctx);
-    // 每个小块的宽高
-    this.w = 100;
-    this.h = 80;
-    this.waterMark();
-  }
   waterMark() {
-    if (!this.can){
+    if (!this.can) {
       this.initWaterMark();
       return false;
     }
     // 更新屏幕宽高
-    this.width = window.innerWidth || document.documentElement.clientWidth || document.documentElement.offsetHeight || document.body.clientWidth;
-    this.height = window.innerHeight || document.documentElement.clientWidth || document.documentElement.offsetHeight || document.body.clientHeight;
+    const { width, height } = getWidthAndHeight();
+    this.width = width;
+    this.height = height;
     this.draw();
   }
 }

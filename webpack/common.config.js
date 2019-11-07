@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const { VueLoaderPlugin } = require("vue-loader")
+const { VueLoaderPlugin } = require('vue-loader');
 
 function resolve(dir) {
   return path.join(__dirname, '../', dir);
@@ -12,14 +12,14 @@ export default {
   entry: {
     watermark: isProd
       ? resolve('/src')
-      : ['react-hot-loader/patch', resolve('/src/app')],
+      : ['react-hot-loader/patch', resolve('/src/app')]
   },
   stats: {
     assets: true,
     assetsSort: 'field',
     builtAt: false,
     cached: false,
-    colors: true,
+    colors: true
   },
   cache: true,
   profile: true,
@@ -32,7 +32,7 @@ export default {
     // libraryTarget决定了你的library运行在哪个环境
     libraryTarget: 'umd', // 工具库既可以用commonjs和amd方式使用也可以用script方式引入
     umdNamedDefine: true, // 会对 UMD 的构建过程中的 AMD 模块进行命名。否则就使用匿名的 define
-    library: 'watermark', // library指定的是你require时候的模块名。
+    library: 'watermark' // library指定的是你require时候的模块名。
     // libraryExport: 'default' // 移除libraryExport
   },
   resolve: {
@@ -45,8 +45,9 @@ export default {
       'react-dom': '@hot-loader/react-dom',
       // @images,@common,@util,@layout,@include
       '@utils': resolve('src/utils'),
-      '@styles': resolve('src/styles')
-    },
+      '@styles': resolve('src/styles'),
+      '@method': resolve('src/method')
+    }
   },
   module: {
     rules: [
@@ -54,7 +55,7 @@ export default {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        include: resolve('/src'),
+        include: resolve('/src')
       },
       {
         test: /\.less$/,
@@ -62,7 +63,7 @@ export default {
         include: resolve('/src'),
         use: [
           {
-            loader: 'style-loader',
+            loader: 'style-loader'
           },
           {
             loader: 'css-loader',
@@ -71,7 +72,7 @@ export default {
               importLoaders: 2, // 启用/禁用或设置在CSS加载程序之前应用的加载程序的数量
               modules: {
                 context: resolve('/src'), // 允许为本地标识符名称重新定义基本的加载程序上下文。
-                localIdentName: '[name]__[local]-[hash:base64:5]', // 使用 localIdentName 查询参数配置生成类名
+                localIdentName: '[name]__[local]-[hash:base64:5]' // 使用 localIdentName 查询参数配置生成类名
               }
             }
           },
@@ -80,15 +81,14 @@ export default {
             options: {
               sourceMap: !isProd,
               config: {
-                path: 'postcss.config.js'  // 这个得在项目根目录创建此文件
+                path: 'postcss.config.js' // 这个得在项目根目录创建此文件
               }
-
             }
           },
           {
             loader: 'less-loader',
             options: {
-              sourceMap: !isProd,
+              sourceMap: !isProd
             }
           }
         ]
@@ -119,9 +119,9 @@ export default {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
-    }),
+    })
   ]
 };
 

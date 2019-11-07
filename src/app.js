@@ -5,21 +5,24 @@ import Vue from 'vue';
 // components
 import Index, { VueWaterMark, NativeWaterMark } from '.';
 // 注册组件库
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
   el: '#app',
   // render: h => h(VueWaterMark),
   components: { VueWaterMark },
-  data () {
+  data() {
     return {
       value: true,
       login: 'testUserName',
       code: 1234567890
-    }
-  },
+    };
+  }
+});
+NativeWaterMark({
+  login:'dsf',
+  code: 123
 })
-
 const render = (() => {
   const root = document.querySelector('#root');
   const renderFn = root.hasChildNodes() ? ReactDOM.hydrate : ReactDOM.render;
@@ -27,9 +30,9 @@ const render = (() => {
   return Component => {
     renderFn(
       <AppContainer>
-        <Component login="testUserName" code="1234567890"/>
+        <Component login="testUserName" code="1234567890" />
       </AppContainer>,
-      root,
+      root
     );
   };
 })();

@@ -2,7 +2,7 @@
 require('@babel/register')({
   presets: ['@babel/preset-env'],
   ignore: [/node_modules/],
-  extensions: ['.es6', '.es', '.jsx', '.js'],
+  extensions: ['.es6', '.es', '.jsx', '.js']
 });
 
 module.exports = () => {
