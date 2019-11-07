@@ -15,10 +15,10 @@
     "eslint": "npm run prettier && npm run eslint:style && npm run eslint:script",
     "eslint:script": "eslint --fix --ext .ts,.tsx,.js,.jsx ./",
     "eslint:style": "stylelint --fix 'src/**/*.css' 'src/**/*.less' --syntax less",
-    "release": "npm version patch && npm run build && npm publish",
-    "release:patch": "npm version patch && npm run build && npm publish",
-    "release:minor": "npm version minor && npm run build && npm publish",
-    "release:major": "npm version major && npm run build && npm publish"
+    "release": "npm run build && npm publish",
+    "release:patch": "npm version patch",
+    "release:minor": "npm version minor",
+    "release:major": "npm version major"
   },
   "repository": {
     "type": "git",
