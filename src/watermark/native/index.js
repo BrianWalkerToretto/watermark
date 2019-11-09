@@ -1,6 +1,7 @@
 import debounce from '@utils/debounce';
 import loadWaterMark from '@method/loadWaterMark';
 import initWaterMark from '@method/initWaterMark';
+import paramsFormat from '@method/paramsFormat';
 import getWidthAndHeight from '@utils/getWidthAndHeight';
 import { canRedraw, drawCanvas, drawSvg } from '@utils/draw';
 import { addEventListen } from '@utils/eventListener';
@@ -23,9 +24,11 @@ NativeWaterMark.prototype = {
   init: function(props) {
     this.canvas.className = style.waterMark;
     document.body.appendChild(this.canvas);
-    this.login = props.login;
-    this.code = props.code;
-
+    this.data = paramsFormat(props);
+    this.noRender = !this.data.text;
+    if (this.noRender) {
+      return false;
+    }
     this.ie = !!window['ActiveXObject'] || 'ActiveXObject' in window;
     // ie11以下不兼容pointer-event,故使用svg
     this.draw = window['ActiveXObject'] ? drawSvg : drawCanvas;

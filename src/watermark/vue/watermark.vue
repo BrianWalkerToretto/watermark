@@ -6,6 +6,7 @@
 import debounce from '@utils/debounce';
 import loadWaterMark from '@method/loadWaterMark';
 import initWaterMark from '@method/initWaterMark';
+import paramsFormat from '@method/paramsFormat';
 import getWidthAndHeight from '@utils/getWidthAndHeight';
 import { canRedraw, drawCanvas, drawSvg } from '@utils/draw';
 import { addEventListen } from '@utils/eventListener';
@@ -16,13 +17,9 @@ export default {
     return {};
   },
   props: {
-    login: {
+    text: {
       type: [String, Number, Array, Object],
       required: true
-    },
-    code: {
-      type: [String, Number],
-      default: ''
     }
   },
   beforeCreate: function() {
@@ -31,6 +28,14 @@ export default {
     this.draw = !!window['ActiveXObject'] ? drawSvg : drawCanvas;
   },
   created: function() {
+    this.data = paramsFormat({
+      text: this.text
+    });
+    this.noRender = !this.data.text;
+    if (this.noRender) {
+      this.mounted = () => {};
+      return false;
+    }
     this.initWaterMark();
     this.loadWaterMark();
   },
@@ -60,7 +65,6 @@ export default {
     }
   }
 };
-
 </script>
 
 <style lang="less" module scoped>

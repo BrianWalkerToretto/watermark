@@ -2,41 +2,24 @@ import React from 'react';
 import debounce from '@utils/debounce';
 import loadWaterMark from '@method/loadWaterMark';
 import initWaterMark from '@method/initWaterMark';
+import paramsFormat from '@method/paramsFormat';
 import getWidthAndHeight from '@utils/getWidthAndHeight';
 import { canRedraw, drawCanvas, drawSvg } from '@utils/draw';
 import { addEventListen } from '@utils/eventListener';
 import style from '@styles';
 
-/**
- * pages.github.com
- * {
- *  container: dom/selector
- *  text: string/number,[],{}
- *  style: {
- *
- *  }
- *  options = {
- *    x: 20, // 水印起始位置x轴坐标
-      y: 20, // 水印起始位置Y轴坐标
-      rows: 200, // 水印行数
-      cols: 200, // 水印列数
-      color: '#000000', // 水印字体颜色
-      alpha: 0.005, // 水印透明度
-      fontsize: '12px', // 水印字体大小
-      font: '微软雅黑', // 水印字体
-      width: 200, // 水印宽度
-      height: 30, // 水印高度
-      angle: 25 // 水印倾斜度数
- *  }
- * }
- */
 export default class WaterMark extends React.PureComponent {
   loadWaterMark = loadWaterMark;
   initWaterMark = initWaterMark('waterMark');
   constructor(props) {
     super(props);
-    this.login = props.login;
-    this.code = props.code;
+    this.data = paramsFormat(props);
+    this.noRender = !this.data.text;
+    if (this.noRender) {
+      this.componentDidMount = () => {};
+      this.render = () => null;
+      return false;
+    }
 
     this.canvas = React.createRef();
     /**

@@ -14,15 +14,13 @@ new Vue({
   data() {
     return {
       value: true,
-      login: 'testUserName',
-      code: 1234567890
+      text: ['testUserName', '1234567890']
     };
   }
 });
 NativeWaterMark({
-  login:'dsf',
-  code: 123
-})
+  text: ['testUserName', '1234567890']
+});
 const render = (() => {
   const root = document.querySelector('#root');
   const renderFn = root.hasChildNodes() ? ReactDOM.hydrate : ReactDOM.render;
@@ -30,7 +28,7 @@ const render = (() => {
   return Component => {
     renderFn(
       <AppContainer>
-        <Component login="testUserName" code="1234567890" />
+        <Component text={['testUserName', '1234567890']} />
       </AppContainer>,
       root
     );

@@ -46,7 +46,8 @@ export default {
       // @images,@common,@util,@layout,@include
       '@utils': resolve('src/utils'),
       '@styles': resolve('src/styles'),
-      '@method': resolve('src/method')
+      '@method': resolve('src/method'),
+      '@config': resolve('src/config')
     }
   },
   module: {
