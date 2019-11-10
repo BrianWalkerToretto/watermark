@@ -10,22 +10,22 @@ npm install @brian-walker-toretto/watermark
 ##### 2. 引入组件
 react:
 ```js
-import Watermark from "@brian-walker-toretto/watermark/react";
+import Watermark from "@brian-walker-toretto/watermark";
 或
 import { ReactWaterMark } from "@brian-walker-toretto/watermark";
 ```
 
 vue:
 ```js
-import Watermark from "@brian-walker-toretto/watermark/vue";
-或
+// import Watermark from "@brian-walker-toretto/watermark/vue";
+// 或
 import { VueWaterMark } from "@brian-walker-toretto/watermark";
 ```
 
 原生:
 ```js
-import Watermark from "@brian-walker-toretto/watermark/native";
-或
+// import Watermark from "@brian-walker-toretto/watermark/native";
+// 或
 import { NativeWaterMark } from "@brian-walker-toretto/watermark";
 ```
 
