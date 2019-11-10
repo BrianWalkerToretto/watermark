@@ -1,6 +1,6 @@
 {
   "name": "@brian-walker-toretto/watermark",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "canvas/svg watermark",
   "main": "/dist/watermark.js",
   "keywords": [
