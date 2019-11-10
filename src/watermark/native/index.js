@@ -61,4 +61,7 @@ NativeWaterMark.prototype = {
   }
 };
 
+export {
+  NativeWaterMark
+}
 export default NativeWaterMark;

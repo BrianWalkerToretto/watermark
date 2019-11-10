@@ -16,16 +16,19 @@
   <!-- vue -->
   <div id="app"><vue-water-mark :text="text" /></div>
   <!-- 原生js -->
-  <script src="https://cdn.bootcss.com/react/16.10.2/umd/react.production.min.js"></script>
-  <script src="https://cdn.bootcss.com/react-dom/16.10.2/umd/react-dom.production.min.js"></script>
+  <!-- <script src="https://cdn.bootcss.com/react/16.10.2/umd/react.production.min.js"></script> -->
+  <!-- <script src="https://cdn.bootcss.com/react-dom/16.10.2/umd/react-dom.production.min.js"></script> -->
   <script>
-  if(location.href.includes('/src/index.html')){
+  if(/\/src\/index.html/ig.test(location.href)){
     var script = document.createElement('script');
-    script.src = '../dist/watermark.js';
+    script.src = '../dist/native/index.js';
     script.onload=function(){
       console.log('Watermark', watermark);
       watermark.NativeWaterMark({
-        text: ['testUserName', '1234567890']
+        text: ['testUserName', '1234567890'],
+        textStyle: {
+          color: 'red'
+        }
       });
     }
     document.body.appendChild(script);

@@ -79,7 +79,7 @@ module.exports = merge(WebpackCommonConfig, {
           }
         },
         extractComments: false, // 移除注释
-        sourceMap: true,
+        sourceMap: false,
         cache: true,
         parallel: os.cpus().length
       })
