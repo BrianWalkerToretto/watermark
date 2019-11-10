@@ -1,62 +1,76 @@
 export default function drawSvg() {
-  // 数据
-  const col = (this.width / this.w) | (0 + 1);
-  const row = (this.height / this.h) | (0 + 1);
-  const misId = this.login || '';
-  const id = this.code || '';
+  const {
+    can,
+    data: { text, textStyle, options }
+  } = this;
   // 获取svg 如果该svg不存在，则创建svg 并且设置style
-  let svg = document.querySelector('#svgWaterMark');
-
-  if (!svg) {
+  let svg = can;
+  let isCreateSvg = false;
+  if (!svg || svg.tagName.toLowerCase() !== 'svg') {
     svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('id', 'svgWaterMark');
     svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
     svg.setAttribute('version', '1.1');
+    isCreateSvg = true;
   }
   svg.setAttribute(
     'style',
-    `pointer-events:none;position:absolute;top:0;left:0;right:0;bottom:0;z-index:200;font-weight:200;height:${this.height}px;width:100%;`
+    `z-index:200;
+    font-weight:${textStyle.fontWeight};font-size:${
+      textStyle.fontSize
+    };font-family:${textStyle.font};
+    background:${textStyle.background};
+    text-align:${textStyle.textAlign};vertical-align:middle;
+    opacity:${options.alpha || 0.8};
+    width:${this.width - (this.ie ? 8 : 0)}px;
+    height:${this.height - (this.ie ? 8 : 0)}px;`
   );
 
-  const fragment = document.createDocumentFragment();
+  // col row
+  let row = (this.height / this.h) | (0 + 1);
+  let col = (this.width / this.w) | (0 + 1);
+  if (options.rows) {
+    row = options.rows * this.ratio;
+    this.h = this.height / row;
+  }
+  if (options.cols) {
+    col = options.cols * this.ratio;
+    this.w = this.width / col;
+  }
 
+  const offset = parseFloat(textStyle.fontSize) * textStyle.lineHeight;
+  const stratYOffset = this.h / 2 - (offset * text.length) / 2 + offset / 2;
+  // fragment
+  const fragment = document.createDocumentFragment();
   for (let i = 0; i < col; i += 2) {
     for (let j = 0; j < row; j += 2) {
-      const x = String(this.w * i);
-      const y = this.h * j;
+      const x = options.x + this.w * i;
+      const y = options.y + this.h * j;
       // 创建svg文本
-      const text = document.createElementNS(
+      const svgText = document.createElementNS(
         'http://www.w3.org/2000/svg',
         'text'
       );
-
-      text.setAttribute('x', x);
-      text.setAttribute('y', String(y + 40));
-      text.setAttribute('transform', `rotate(-15 ${x},${y})`);
-      text.setAttribute('fill', '#ccc');
-      // 创建svg文本的内容
-      const misIdText = document.createElementNS(
-        'http://www.w3.org/2000/svg',
-        'tspan'
-      );
-
-      misIdText.textContent = misId;
-      const idText = document.createElementNS(
-        'http://www.w3.org/2000/svg',
-        'tspan'
-      );
-
-      idText.textContent = id;
-      idText.setAttribute('x', x);
-      idText.setAttribute('y', String(y + 60));
-      // append
-      text.appendChild(misIdText);
-      text.appendChild(idText);
-      fragment.appendChild(text);
+      svgText.setAttribute('transform', `rotate(${options.angle} ${x},${y})`); // options.angle
+      for (let t = 0; t < text.length; t++) {
+        // 创建svg文本的内容
+        const svgTspan = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'tspan'
+        );
+        svgTspan.innerHTML = text[t];
+        svgTspan.setAttribute('x', x + this.w / 2);
+        svgTspan.setAttribute('y', y + stratYOffset + offset * t);
+        // append
+        svgText.appendChild(svgTspan);
+      }
+      fragment.appendChild(svgText);
     }
   }
-
+  svg.setAttribute('fill', textStyle.color);
   svg.innerHTML = '';
   svg.appendChild(fragment);
-  document.body.appendChild(svg);
+  if (isCreateSvg) {
+    document.body.appendChild(svg);
+  }
 }

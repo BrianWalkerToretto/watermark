@@ -34,6 +34,9 @@ export default class WaterMark extends React.PureComponent {
   }
 
   render() {
+    if (window['ActiveXObject']) {
+      return <svg className={style.waterMark} ref={this.canvas}></svg>;
+    }
     return <canvas className={style.waterMark} ref={this.canvas}></canvas>;
   }
 

@@ -28,7 +28,10 @@ const render = (() => {
   return Component => {
     renderFn(
       <AppContainer>
-        <Component text={['testUserName', '1234567890']} />
+        <Component
+          text={['testUserName', '1234567890']}
+          textStyle={{ color: 'red' }}
+        />
       </AppContainer>,
       root
     );

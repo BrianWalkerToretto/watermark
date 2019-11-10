@@ -12,7 +12,7 @@ export default function canRedraw(scope = 50) {
   const isWidthChange = this.width !== width; // this.width > width + scope || this.width < width - scope;
   const isHeightChange =
     this.height > height + scope || this.height < height - scope;
-  console.log(isWidthChange || isHeightChange);
+
   return isWidthChange || isHeightChange;
   // if (isWidthChange || isHeightChange){
   //   return true;
