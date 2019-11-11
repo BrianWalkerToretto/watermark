@@ -114,7 +114,7 @@ export default {
     // scope hoisting
     new webpack.optimize.ModuleConcatenationPlugin(), //  webpack 3
     new webpack.ProvidePlugin({
-      Symbol: resolve('./node_modules/core-js/features/symbol'),
+      Symbol: resolve('./node_modules/core-js/modules/es.symbol.js'),
       Set: resolve('./node_modules/core-js/features/set'),
       Map: resolve('./node_modules/core-js/features/map')
     }),

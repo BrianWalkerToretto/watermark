@@ -38,7 +38,7 @@ module.exports = merge(WebpackCommonConfig, {
   //   nodeExternals()
   // ],
   externals: {
-    // react: 'React'
+    react: 'react' // react: 'React'
     // 'react-dom': 'ReactDOM',
   },
   optimization: {
