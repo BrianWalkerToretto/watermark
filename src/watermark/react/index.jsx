@@ -7,8 +7,8 @@ import getWidthAndHeight from '@utils/getWidthAndHeight';
 import { canRedraw, drawCanvas, drawSvg } from '@utils/draw';
 import { addEventListen } from '@utils/eventListener';
 import style from '@styles';
-
-export default class WaterMark extends React.PureComponent {
+// 保证script的native使用
+export default class WaterMark extends (typeof React === 'object' ? React.PureComponent : Object) {
   loadWaterMark = loadWaterMark;
   initWaterMark = initWaterMark('waterMark');
   constructor(props) {
