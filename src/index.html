@@ -21,7 +21,7 @@
   <script>
   if(/\/src\/index.html/ig.test(location.href)){
     var script = document.createElement('script');
-    script.src = '../dist/native/index.js';
+    script.src = '../dist/watermark.js';
     script.onload=function(){
       console.log('Watermark', watermark);
       watermark.NativeWaterMark({
