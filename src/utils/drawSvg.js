@@ -58,7 +58,7 @@ export default function drawSvg() {
           'http://www.w3.org/2000/svg',
           'tspan'
         );
-        svgTspan.innerHTML = text[t];
+        svgTspan.textContent = text[t];
         svgTspan.setAttribute('x', x + this.w / 2);
         svgTspan.setAttribute('y', y + stratYOffset + offset * t);
         // append
