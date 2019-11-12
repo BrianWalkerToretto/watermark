@@ -14,7 +14,7 @@ export default function initWaterMark(renderName) {
       });
     }
     if (this.ctx) return;
-    this.ctx = this.ie ? this.can : this.can.getContext('2d'); // eslint-disable-line
+    this.ctx = !!window['ActiveXObject'] ? this.can : this.can.getContext('2d'); // eslint-disable-line
     this.ratio = getDevicePixelRatio(this.ctx);
 
     // length

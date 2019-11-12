@@ -28,13 +28,13 @@ export default class WaterMark extends (typeof React === 'object' ? React.PureCo
      **/
     this.ie = !!window['ActiveXObject'] || 'ActiveXObject' in window; // eslint-disable-line
     // ie11以下不兼容pointer-event,故使用svg
-    this.draw = window['ActiveXObject'] ? drawSvg : drawCanvas;
+    this.draw = !!window['ActiveXObject'] ? drawSvg : drawCanvas;
     this.initWaterMark();
     this.loadWaterMark();
   }
 
   render() {
-    if (window['ActiveXObject']) {
+    if (!!window['ActiveXObject']) {
       return <svg className={style.waterMark} ref={this.canvas}></svg>;
     }
     return <canvas className={style.waterMark} ref={this.canvas}></canvas>;
