@@ -10,7 +10,7 @@ const isProd = process.env.NODE_ENV === 'production';
 export default {
   mode: isProd ? 'production' : 'development',
   entry: {
-    watermark: isProd
+    index: isProd
       ? resolve('/src')
       : ['react-hot-loader/patch', resolve('/src/app')]
   },
