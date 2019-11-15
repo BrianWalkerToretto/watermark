@@ -50,6 +50,9 @@
       }
     ],
     ["@babel/plugin-syntax-dynamic-import"],
+    ["@babel/plugin-transform-modules-commonjs", {
+      "loose": true
+    }], // This plugin transforms ES2015 modules to CommonJS
     ["@babel/plugin-transform-arrow-functions", { "spec": false }],
     ["@babel/plugin-proposal-class-properties", { "loose": true }],
     ["react-hot-loader/babel"]

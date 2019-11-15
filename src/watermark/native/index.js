@@ -31,7 +31,7 @@ NativeWaterMark.prototype = {
     }
     this.ie = !!window['ActiveXObject'] || 'ActiveXObject' in window;
     // ie11以下不兼容pointer-event,故使用svg
-    this.draw = !!window['ActiveXObject'] ? drawSvg : drawCanvas;
+    this.draw = window['ActiveXObject'] ? drawSvg : drawCanvas;
 
     this.initWaterMark();
     this.loadWaterMark();
@@ -61,7 +61,5 @@ NativeWaterMark.prototype = {
   }
 };
 
-export {
-  NativeWaterMark
-}
+export { NativeWaterMark };
 export default NativeWaterMark;

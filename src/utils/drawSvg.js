@@ -1,3 +1,5 @@
+import style from '@styles';
+
 export default function drawSvg() {
   const {
     can,
@@ -12,11 +14,13 @@ export default function drawSvg() {
     svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
     svg.setAttribute('version', '1.1');
     isCreateSvg = true;
+    this.can = svg;
   }
+  // svg.className = style.waterMark;
+  svg.setAttribute('class', style.waterMark);
   svg.setAttribute(
     'style',
-    `z-index:200;
-    font-weight:${textStyle.fontWeight};font-size:${
+    `font-weight:${textStyle.fontWeight};font-size:${
       textStyle.fontSize
     };font-family:${textStyle.font};
     background:${textStyle.background};
@@ -59,7 +63,7 @@ export default function drawSvg() {
           'tspan'
         );
         svgTspan.textContent = text[t];
-        svgTspan.setAttribute('x', x + this.w / 2);
+        svgTspan.setAttribute('x', x);
         svgTspan.setAttribute('y', y + stratYOffset + offset * t);
         // append
         svgText.appendChild(svgTspan);
@@ -68,7 +72,7 @@ export default function drawSvg() {
     }
   }
   svg.setAttribute('fill', textStyle.color);
-  svg.innerHTML = '';
+  svg.textContent = '';
   svg.appendChild(fragment);
   if (isCreateSvg) {
     document.body.appendChild(svg);

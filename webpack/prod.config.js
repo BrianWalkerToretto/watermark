@@ -59,8 +59,12 @@ module.exports = merge(WebpackCommonConfig, {
           ie8: true, // 支持ie8
           ecma: 8,
           mangle: true,
+          // mangleProperties: {
+          //   screw_ie8: false,
+          //   except: ['e']
+          // },
           compress: {
-            properties: true,
+            properties: false, // 是否将常量属性名转为调用表达式。如 a["foo"] → a.foo。
             // 在UglifyJs删除没有用到的代码时不输出警告
             // warnings: false,
             // 删除所有的 `console` 语句，可以兼容ie浏览器

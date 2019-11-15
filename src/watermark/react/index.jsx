@@ -8,7 +8,9 @@ import { canRedraw, drawCanvas, drawSvg } from '@utils/draw';
 import { addEventListen } from '@utils/eventListener';
 import style from '@styles';
 // 保证script的native使用
-export default class WaterMark extends (typeof React === 'object' ? React.PureComponent : Object) {
+export default class WaterMark extends (typeof React === 'object'
+  ? React.PureComponent
+  : Object) {
   loadWaterMark = loadWaterMark;
   initWaterMark = initWaterMark('waterMark');
   constructor(props) {
@@ -28,13 +30,13 @@ export default class WaterMark extends (typeof React === 'object' ? React.PureCo
      **/
     this.ie = !!window['ActiveXObject'] || 'ActiveXObject' in window; // eslint-disable-line
     // ie11以下不兼容pointer-event,故使用svg
-    this.draw = !!window['ActiveXObject'] ? drawSvg : drawCanvas;
+    this.draw = window['ActiveXObject'] ? drawSvg : drawCanvas;
     this.initWaterMark();
     this.loadWaterMark();
   }
 
   render() {
-    if (!!window['ActiveXObject']) {
+    if (window['ActiveXObject']) {
       return <svg className={style.waterMark} ref={this.canvas}></svg>;
     }
     return <canvas className={style.waterMark} ref={this.canvas}></canvas>;
