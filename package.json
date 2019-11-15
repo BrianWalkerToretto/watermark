@@ -2,7 +2,7 @@
   "name": "@brian-walker-toretto/watermark",
   "version": "0.2.12",
   "description": "canvas/svg watermark",
-  "main": "/dist",
+  "main": "/dist/watermark.js",
   "keywords": [
     "watermark",
     "watermark-dom"
