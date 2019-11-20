@@ -16,6 +16,7 @@
     "eslint:script": "eslint --fix --ext .ts,.tsx,.js,.jsx ./",
     "eslint:style": "stylelint --fix 'src/**/*.css' 'src/**/*.less' --syntax less",
     "release": "npm run build && npm publish",
+    "release:beta": "npm run build && npm publish --tag=beta",
     "release:patch": "npm version patch",
     "release:minor": "npm version minor",
     "release:major": "npm version major"
