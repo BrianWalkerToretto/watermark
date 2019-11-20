@@ -1,6 +1,10 @@
 # watermark
 canvas/svg水印：可用于 react，vue，原生js 和 其他小程序（小程序平台正在开发）的水印组件
 
+---
+* iE9及以上
+* 现代浏览器
+
 ### 使用
 ##### 1. 安装依赖
 ```
@@ -13,27 +17,29 @@ react:
 import Watermark from "@brian-walker-toretto/watermark";
 或
 import { ReactWaterMark } from "@brian-walker-toretto/watermark";
+或
+import Watermark from "@brian-walker-toretto/watermark/dist/react";
 ```
 
 vue:
 ```js
-// import Watermark from "@brian-walker-toretto/watermark/vue";
-// 或
 import { VueWaterMark } from "@brian-walker-toretto/watermark";
+或
+import Watermark from "@brian-walker-toretto/watermark/dist/vue";
 ```
 
 原生:
 ```js
-// import Watermark from "@brian-walker-toretto/watermark/native";
-// 或
 import { NativeWaterMark } from "@brian-walker-toretto/watermark";
+或
+import Watermark from "@brian-walker-toretto/watermark/dist/native";
 ```
 
 ##### 3. 具体使用
 React:
 ```jsx
 import React, { Component } from "react";
-import Watermark from "@brian-walker-toretto/watermark/react";
+import Watermark from "@brian-walker-toretto/watermark";
 import "./index.css";
 
 class Avatar extends Component {
@@ -50,7 +56,7 @@ export default Avatar;
 
 原生:
 ```js
-import Watermark from "@brian-walker-toretto/watermark/native";
+import Watermark from "@brian-walker-toretto/watermark/dist/native";
 NativeWaterMark({
   text: ['testUserName', '1234567890']
 });
@@ -67,6 +73,8 @@ NativeWaterMark({
 
 
 ### Todo
+-   [ ] ie8
+-   [ ] 判断网页宽高变化
 -   [ ] svg版本修复
 -   [ ] README
 -   [ ] 实现 react hooks 版本
