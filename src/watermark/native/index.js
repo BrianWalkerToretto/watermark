@@ -1,30 +1,39 @@
-import debounce from '@utils/debounce';
+// import debounce from '@utils/debounce';
 import loadWaterMark from '@method/loadWaterMark';
 import initWaterMark from '@method/initWaterMark';
 import paramsFormat from '@method/paramsFormat';
 import getWidthAndHeight from '@utils/getWidthAndHeight';
 import { canRedraw, drawCanvas, drawSvg } from '@utils/draw';
-import { addEventListen } from '@utils/eventListener';
+// import { addEventListen } from '@utils/eventListener';
 import style from '@styles';
 
-function NativeWaterMark(props = {}) {
+function NativeWaterMark(container, props = {}) {
   if (!props || typeof props !== 'object') {
     return console.warn('error');
   }
   if (this instanceof NativeWaterMark) {
-    return this.init(props);
+    return this.init(container, props);
   }
-  return new NativeWaterMark(props);
+  if(!container || typeof container.appendChild !== 'function'){
+    return new NativeWaterMark(document.body, props);
+  }
+  if(Object.prototype.toString.call(container) === '[object Object]'){
+    return new NativeWaterMark(document.body, container);
+  }
+  return new NativeWaterMark(container, props);
 }
 
 NativeWaterMark.prototype = {
   constructor: NativeWaterMark,
   canvas: document.createElement('canvas'),
   initWaterMark: initWaterMark('waterMark'),
-  init: function(props) {
+  init: function(container, props) {
     this.canvas.className = style.waterMark;
-    document.body.appendChild(this.canvas);
+    !window['ActiveXObject'] && document.body.appendChild(this.canvas);
     this.data = paramsFormat(props);
+    if(container && container.appendChild){
+      this.data.container = container;
+    }
     this.noRender = !this.data.text;
     if (this.noRender) {
       return false;
@@ -41,12 +50,22 @@ NativeWaterMark.prototype = {
 
     const redraw = canRedraw.bind(this);
 
-    addEventListen(
-      'resize',
-      debounce(() => {
-        redraw() && this.waterMark();
-      }, 200)
-    );
+    // 监听resize变化来重新渲染
+    // addEventListen(
+    //   'resize',
+    //   debounce(() => {
+    //     redraw() && this.waterMark();
+    //   }, 200)
+    // );
+    // setInterval来监听页面宽高变化（暂时用来解决非resize的宽高变化）
+    this.clearInterval();
+    this.interval = setInterval(() => {
+      redraw() && this.waterMark();
+    }, 500);
+  },
+  clearInterval() {
+    clearInterval(this.interval);
+    this.interval = null;
   },
   waterMark() {
     if (!this.can) {

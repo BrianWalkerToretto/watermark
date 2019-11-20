@@ -4,7 +4,7 @@ export default {
   // 水印文字的 style 属性
   textStyle: {
     color: '#ccc', // 水印字体颜色
-    fontWeight: '200',
+    fontWeight: 200,
     fontSize: '14px', // 水印字体大小
     font: '微软雅黑', // 水印字体
     lineHeight: 1.2,

@@ -6,7 +6,7 @@ import Vue from 'vue';
 import Index, { VueWaterMark, NativeWaterMark } from '.';
 // 注册组件库
 Vue.config.productionTip = false;
-
+// window['ActiveXObject']=true
 new Vue({
   el: '#app',
   // render: h => h(VueWaterMark),
@@ -18,7 +18,7 @@ new Vue({
     };
   }
 });
-NativeWaterMark({
+NativeWaterMark(document.body, {
   text: ['testUserName', '1234567890']
 });
 const render = (() => {

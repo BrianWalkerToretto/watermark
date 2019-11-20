@@ -3,7 +3,7 @@ import style from '@styles';
 export default function drawSvg() {
   const {
     can,
-    data: { text, textStyle, options }
+    data: { container, text, textStyle, options }
   } = this;
   // 获取svg 如果该svg不存在，则创建svg 并且设置style
   let svg = can;
@@ -75,6 +75,6 @@ export default function drawSvg() {
   svg.textContent = '';
   svg.appendChild(fragment);
   if (isCreateSvg) {
-    document.body.appendChild(svg);
+    container.appendChild(svg);
   }
 }
