@@ -8,19 +8,22 @@ import { canRedraw, drawCanvas, drawSvg } from '@utils/draw';
 import style from '@styles';
 
 function NativeWaterMark(container, props = {}) {
-  if (!props || typeof props !== 'object') {
-    return console.warn('error');
+  if (arguments.length === 0) {
+    throw new Error('参数错误');
   }
   if (this instanceof NativeWaterMark) {
     return this.init(container, props);
   }
-  if(!container || typeof container.appendChild !== 'function'){
-    return new NativeWaterMark(document.body, props);
+  if(arguments.length === 1){
+    if(Object.prototype.toString.call(container) === '[object Object]'){
+      return new NativeWaterMark(document.body, container);
+    }
+    throw new Error('参数错误');
   }
   if(Object.prototype.toString.call(container) === '[object Object]'){
     return new NativeWaterMark(document.body, container);
   }
-  return new NativeWaterMark(container, props);
+  return new NativeWaterMark(container && typeof container.appendChild === 'function' ? container : document.body, props);
 }
 
 NativeWaterMark.prototype = {
