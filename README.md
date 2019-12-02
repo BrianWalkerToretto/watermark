@@ -1,6 +1,8 @@
 # watermark
 canvas/svg水印：可用于 react，vue，原生js 和 其他小程序（小程序平台正在开发）的水印组件
 
+<!-- watermark-shadowDOM -->
+[English](./README-en.md)
 ---
 * iE9及以上
 * 现代浏览器
@@ -132,13 +134,13 @@ alpha  |  0.8(暗水印0.005)   | number  |  水印透明度 | N
 x  |  0   | number  | 水印起始位置x轴坐标 | N
 y  |  0   | number  | 水印起始位置Y轴坐标 | N
 rows  |  0   | number  | 水印行数 | N
-cols  |  0   | number  | 水印行数 | N
+cols  |  0   | number  | 水印列数 | N
 
 ### Todo
 -   [ ] ie8
 -   [ ] 判断网页宽高变化
--   [ ] svg版本修复
--   [ ] README
+<!-- -   [ ] svg版本修复 -->
+<!-- -   [ ] README -->
 -   [ ] 实现 react hooks 版本
 -   [ ] 拓展更多小程序平台
 -   [ ] api 拓展
@@ -150,6 +152,6 @@ cols  |  0   | number  | 水印行数 | N
 
 ### 任务 TODO
 - [❎] 防删除
-- [❎] react/vue/js
+<!-- - [❎] react/vue/js -->
 - [❎] 暗水印
 - [❎] 性能优化
