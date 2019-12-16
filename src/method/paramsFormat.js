@@ -1,6 +1,12 @@
 import defaultProps from '@config/defaultProps';
 import textFormat from '@method/format';
 
+const textAlign = {
+  left: 'right',
+  right: 'left',
+  center: 'center'
+};
+
 function copy(p) {
   let target = {};
   for (let i in p) {
@@ -23,14 +29,11 @@ export default function paramsFormat(props) {
     copy(defaultProps.textStyle),
     props.textStyle
   );
+  if(+props.zIndex > 0){
+    params.textStyle.zIndex = props.zIndex;
+  }
   params.options = Object.assign(copy(defaultProps.options), props.options);
-  const textAlign = {
-    left: 'right',
-    right: 'left',
-    center: 'center'
-  };
-  params.textStyle.textAlign =
-    textAlign[params.textStyle.textAlign] || textAlign['center'];
+  params.textStyle.textAlign = textAlign[params.textStyle.textAlign] || textAlign['center'];
 
   return params;
 }

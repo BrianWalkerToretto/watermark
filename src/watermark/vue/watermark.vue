@@ -23,6 +23,18 @@ export default {
     text: {
       type: [String, Number, Array, Object],
       required: true
+    },
+    zindex: {
+      type: Number,
+      default: 0
+    },
+    textstyle: {
+      type: Object,
+      default: null
+    },
+    options: {
+      type: Object,
+      default: null
     }
   },
   beforeCreate: function() {
@@ -30,11 +42,14 @@ export default {
     this.draw = !!window['ActiveXObject'] ? drawSvg : drawCanvas;
   },
   created: function() {
+    let params = {};
     // data ie
     this.ie = !!window['ActiveXObject'] || 'ActiveXObject' in window; // eslint-disable-line
-    this.data = paramsFormat({
-      text: this.text
-    });
+    params.text = this.text;
+    this.zindex && (params.zIndex = this.zindex);
+    this.options && (params.options = this.options);
+    this.textstyle && (params.textStyle = this.textstyle);
+    this.data = paramsFormat(params);
     this.noRender = !this.data.text;
     if (this.noRender) {
       this.mounted = () => {};

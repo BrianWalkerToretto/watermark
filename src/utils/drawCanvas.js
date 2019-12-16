@@ -10,6 +10,7 @@ export default function drawCanvas() {
   // ie浏览器的滚动栏占用8px
   this.can.style.width = `${this.width - (this.ie ? 8 : 0)}px`;
   this.can.style.height = `${this.height - (this.ie ? 8 : 0)}px`;
+  textStyle.zIndex && (this.can.style.zIndex = textStyle.zIndex);
   ctx.beginPath();
 
   // 背景颜色

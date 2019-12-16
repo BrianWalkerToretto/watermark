@@ -14,6 +14,13 @@ new Vue({
   data() {
     return {
       value: true,
+      zIndex: 99,
+      options: {
+        angle: -15
+      },
+      textStyle: {
+        textAlign: 'center'
+      },
       text: ['testUserName', '1234567890']
     };
   }

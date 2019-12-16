@@ -2,7 +2,7 @@
 canvas/svg水印：可用于 react，vue，原生js 和 其他小程序（小程序平台正在开发）的水印组件
 
 <!-- watermark-shadowDOM -->
-[English](./README-en.md)
+简体中文 | [English](./README-en.md)
 ---
 * iE9及以上
 * 现代浏览器
@@ -61,7 +61,7 @@ Vue:
 ```html
 <template>
   <div id="app">
-    <VueWaterMark :text="text"/>
+    <VueWaterMark :text="text" :zIndex="zIndex" :options="options" :textStyle="textStyle" />
   </div>
 </template>
 <script>
@@ -89,7 +89,7 @@ VueWaterMark.install(Vue);
 // 在页面中调用
 <template>
   <div id="app">
-    <WaterMark :text="text" />
+    <WaterMark :text="text" :zIndex="zIndex" :options="options" :textStyle="textStyle" />
   </div>
 </template>
 ```

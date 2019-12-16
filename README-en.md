@@ -1,7 +1,8 @@
 # watermark
 canvas/svg watermark：Watermark components available for react, vue, native js, and other miniprogram (miniprogram platform under development)
 
-[中文版](./README.md)
+[中文版](./README.md) | English
+
 ---
 * iE9 and above
 * Modern browser
@@ -60,7 +61,7 @@ Vue:
 ```html
 <template>
   <div id="app">
-    <VueWaterMark :text="text"/>
+    <VueWaterMark :text="text" :zIndex="zIndex" :options="options" :textStyle="textStyle" />
   </div>
 </template>
 <script>
@@ -88,7 +89,7 @@ VueWaterMark.install(Vue);
 
 <template>
   <div id="app">
-    <WaterMark :text="text" />
+    <WaterMark :text="text" :zIndex="zIndex" :options="options" :textStyle="textStyle" />
   </div>
 </template>
 ```

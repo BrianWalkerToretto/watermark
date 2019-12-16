@@ -1,6 +1,7 @@
 export default {
   // 水印的文字，该属性更改后会引起重新渲染
   text: null, // string/number/[]/{}
+  zIndex: 99, // 调整canvas/svg的z-index层级
   // 水印文字的 style 属性
   textStyle: {
     color: '#ccc', // 水印字体颜色
