@@ -1,5 +1,5 @@
 <template>
-  <svg v-if="ie" :class="$style['waterMark']" ref="canvas"></svg>
+  <svg v-if="noie11" :class="$style['waterMark']" ref="canvas"></svg>
   <canvas v-else :class="$style['waterMark']" ref="canvas"></canvas>
 </template>
 
@@ -16,7 +16,7 @@ export default {
   name: 'WaterMark',
   data() {
     return {
-      ie: false
+      noie11: false
     };
   },
   props: {
@@ -44,6 +44,7 @@ export default {
   created: function() {
     let params = {};
     // data ie
+    this.noie11 = !!window['ActiveXObject'];
     this.ie = !!window['ActiveXObject'] || 'ActiveXObject' in window; // eslint-disable-line
     params.text = this.text;
     this.zindex && (params.zIndex = this.zindex);
