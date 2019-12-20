@@ -61,7 +61,7 @@ Vue:
 ```html
 <template>
   <div id="app">
-    <VueWaterMark :text="text" :options="options" :textStyle="textStyle" />
+    <VueWaterMark :text="text" :options="options" :textstyle="textStyle" />
   </div>
 </template>
 <script>
@@ -89,7 +89,7 @@ VueWaterMark.install(Vue);
 // 在页面中调用
 <template>
   <div id="app">
-    <WaterMark :text="text" :options="options" :textStyle="textStyle" />
+    <WaterMark :text="text" :options="options" :textstyle="textStyle" />
   </div>
 </template>
 ```
@@ -111,7 +111,7 @@ NativeWaterMark(document.body, {
 |  属性名    | 类型                |  默认值  | 说明 | 是否必填 |
 | :-------: | :------------: |  :----: | :------------: |:-----: |
 | text    |  String/Number... |   ""   | 水印的文字，该属性更改后会引起重新渲染 | Y
-| textStyle | Object | 见textStyle props   | 水印style | N
+| textStyle | Object | 见textStyle props   | 水印style（vue中使用小写：textstyle） | N
 | options | Object |  见options props  | 水印参数 | N
 | container | document |  document.body  | 原生js参数 | N
 

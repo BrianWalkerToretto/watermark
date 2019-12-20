@@ -60,7 +60,7 @@ Vue:
 ```html
 <template>
   <div id="app">
-    <VueWaterMark :text="text" :options="options" :textStyle="textStyle" />
+    <VueWaterMark :text="text" :options="options" :textstyle="textStyle" />
   </div>
 </template>
 <script>
@@ -88,7 +88,7 @@ VueWaterMark.install(Vue);
 
 <template>
   <div id="app">
-    <WaterMark :text="text" :options="options" :textStyle="textStyle" />
+    <WaterMark :text="text" :options="options" :textstyle="textStyle" />
   </div>
 </template>
 ```
@@ -110,7 +110,7 @@ NativeWaterMark(document.body, {
 |  property name    | type |  default value  | instructions | required |
 | :-------: | :------------: |  :----: | :------------: |:-----: |
 | text    |  String/Number... |   ""   | The text of the watermark | Y
-| textStyle | Object | see textStyle props   | watermark style | N
+| textStyle | Object | see textStyle props   | watermark style（Use lowercase: textstyle in vue） | N
 | options | Object |  see options props  | Watermark parameters | N
 | container | document |  document.body  | native js parameters | N
 
