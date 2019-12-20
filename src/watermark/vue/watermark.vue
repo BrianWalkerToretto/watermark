@@ -24,10 +24,6 @@ export default {
       type: [String, Number, Array, Object],
       required: true
     },
-    zindex: {
-      type: Number,
-      default: 0
-    },
     textstyle: {
       type: Object,
       default: null
@@ -47,7 +43,6 @@ export default {
     this.noie11 = !!window['ActiveXObject'];
     this.ie = !!window['ActiveXObject'] || 'ActiveXObject' in window; // eslint-disable-line
     params.text = this.text;
-    this.zindex && (params.zIndex = this.zindex);
     this.options && (params.options = this.options);
     this.textstyle && (params.textStyle = this.textstyle);
     this.data = paramsFormat(params);

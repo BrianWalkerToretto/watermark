@@ -1,8 +1,7 @@
 # watermark
-canvas/svg watermark：Watermark components available for react, vue, native js, and other miniprogram (miniprogram platform under development)
+canvas/svg watermark：Watermark components available for react, vue, native js, and other miniprogram (miniprogram platform under development)  
 
 [中文版](./README.md) | English
-
 ---
 * iE9 and above
 * Modern browser
@@ -47,9 +46,9 @@ import "./index.css";
 class Avatar extends Component {
 	render() {
 		return <Watermark
-      text="bowen"
-      textStyle={{ color: "#fff", fontSize: 20 }}
-    />;
+        text="bowen"
+        textStyle={{ color: "#fff", fontSize: 20 }}
+      />;
 	}
 }
 
@@ -61,7 +60,7 @@ Vue:
 ```html
 <template>
   <div id="app">
-    <VueWaterMark :text="text" :zIndex="zIndex" :options="options" :textStyle="textStyle" />
+    <VueWaterMark :text="text" :options="options" :textStyle="textStyle" />
   </div>
 </template>
 <script>
@@ -89,7 +88,7 @@ VueWaterMark.install(Vue);
 
 <template>
   <div id="app">
-    <WaterMark :text="text" :zIndex="zIndex" :options="options" :textStyle="textStyle" />
+    <WaterMark :text="text" :options="options" :textStyle="textStyle" />
   </div>
 </template>
 ```
@@ -129,6 +128,7 @@ background  |  transparent   | string  | watermark background | N
 ## options props
 property name  |  default value  |  type    |  instructions |  required
 :-:    |  :-:    |  :-:    |  :-:       | :-:
+zIndex  |  99   | number  | watermark z-index | N
 angle  |  -15   | number  | watermark tilting power | N
 alpha  |  0.8(暗水印0.005)   | number  |  watermark transparency | N
 x  |  0   | number  | X - axis starting position of watermark | N
@@ -137,10 +137,8 @@ rows  |  0   | number  | watermark lines | N
 cols  |  0   | number  | watermark columns | N
 
 ### Todo
--   [ ] ie8
+<!-- -   [ ] ie8 -->
 -   [ ] Determine page width and height changes
-<!-- -   [ ] SVG version fix -->
-<!-- -   [ ] README -->
 -   [ ] implementation react hooks version
 -   [ ] Developing more minprogram platform
 -   [ ] The API development
@@ -151,8 +149,7 @@ cols  |  0   | number  | watermark columns | N
 - [❎] Unit testing：jest
 
 ### 任务 TODO
-- [❎] To prevent delete
-<!-- - [❎] react/vue/js -->
+- [❎] To prevent delete(In development, use MutationObserver)
 - [❎] Dark watermark
 - [❎] Performance optimization
 

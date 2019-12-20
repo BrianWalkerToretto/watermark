@@ -14,7 +14,6 @@ new Vue({
   data() {
     return {
       value: true,
-      zIndex: 99,
       options: {
         angle: -15
       },

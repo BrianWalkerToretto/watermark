@@ -4,8 +4,9 @@
   "description": "canvas/svg watermark",
   "main": "/dist/watermark.js",
   "keywords": [
-    "watermark",
-    "watermark-dom"
+    "canvas", "svg",
+    "react", "vue", "原生js", "小程序",
+    "watermark", "watermark-dom"
   ],
   "scripts": {
     "build": "npm run clear && cross-env NODE_ENV=production webpack --config ./webpack.config.js --color --progress --hide-modules",

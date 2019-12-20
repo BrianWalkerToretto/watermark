@@ -46,10 +46,10 @@ import "./index.css";
 
 class Avatar extends Component {
 	render() {
-		return <Watermark
-      text="bowen"
-      textStyle={{ color: "#fff", fontSize: 20 }}
-    />;
+	  return <Watermark
+        text="bowen"
+        textStyle={{ color: "#fff", fontSize: 20 }}
+      />;
 	}
 }
 
@@ -61,7 +61,7 @@ Vue:
 ```html
 <template>
   <div id="app">
-    <VueWaterMark :text="text" :zIndex="zIndex" :options="options" :textStyle="textStyle" />
+    <VueWaterMark :text="text" :options="options" :textStyle="textStyle" />
   </div>
 </template>
 <script>
@@ -89,7 +89,7 @@ VueWaterMark.install(Vue);
 // 在页面中调用
 <template>
   <div id="app">
-    <WaterMark :text="text" :zIndex="zIndex" :options="options" :textStyle="textStyle" />
+    <WaterMark :text="text" :options="options" :textStyle="textStyle" />
   </div>
 </template>
 ```
@@ -129,6 +129,7 @@ background  |  transparent   | string  | 水印背景样式 | N
 ## options props
 字段名  |  默认值  |  类型    |  说明      |  是否必填
 :-:    |  :-:    |  :-:    |  :-:       | :-:
+zIndex  |  99   | number  | 水印z-index | N
 angle  |  -15   | number  | 水印倾斜度数 | N
 alpha  |  0.8(暗水印0.005)   | number  |  水印透明度 | N
 x  |  0   | number  | 水印起始位置x轴坐标 | N
@@ -137,10 +138,8 @@ rows  |  0   | number  | 水印行数 | N
 cols  |  0   | number  | 水印列数 | N
 
 ### Todo
--   [ ] ie8
+<!-- -   [ ] ie8 -->
 -   [ ] 判断网页宽高变化
-<!-- -   [ ] svg版本修复 -->
-<!-- -   [ ] README -->
 -   [ ] 实现 react hooks 版本
 -   [ ] 拓展更多小程序平台
 -   [ ] api 拓展
@@ -151,7 +150,6 @@ cols  |  0   | number  | 水印列数 | N
 - [❎] 单元测试jest
 
 ### 任务 TODO
-- [❎] 防删除
-<!-- - [❎] react/vue/js -->
+- [❎] 防删除（开发中，使用MutationObserver）
 - [❎] 暗水印
 - [❎] 性能优化

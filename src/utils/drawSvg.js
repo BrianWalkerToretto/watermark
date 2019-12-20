@@ -28,7 +28,7 @@ export default function drawSvg() {
     opacity:${options.alpha || 0.8};
     width:${this.width - (this.ie ? 8 : 0)}px;
     height:${this.height - (this.ie ? 8 : 0)}px;
-    ${textStyle.zIndex ? `z-index:${textStyle.zIndex};` : ''}`
+    ${options.zIndex ? `z-index:${options.zIndex};` : ''}`
   );
 
   // col row

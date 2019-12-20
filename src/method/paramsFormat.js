@@ -29,9 +29,6 @@ export default function paramsFormat(props) {
     copy(defaultProps.textStyle),
     props.textStyle
   );
-  if(+props.zIndex > 0){
-    params.textStyle.zIndex = props.zIndex;
-  }
   params.options = Object.assign(copy(defaultProps.options), props.options);
   params.textStyle.textAlign = textAlign[params.textStyle.textAlign] || textAlign['center'];
 
