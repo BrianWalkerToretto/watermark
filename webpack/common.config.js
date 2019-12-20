@@ -113,11 +113,11 @@ export default {
     new VueLoaderPlugin(),
     // scope hoisting
     new webpack.optimize.ModuleConcatenationPlugin(), //  webpack 3
-    new webpack.ProvidePlugin({
-      Symbol: resolve('./node_modules/core-js/modules/es.symbol.js'),
-      Set: resolve('./node_modules/core-js/features/set'),
-      Map: resolve('./node_modules/core-js/features/map')
-    }),
+    // new webpack.ProvidePlugin({
+    //   Symbol: resolve('./node_modules/core-js/modules/es.symbol.js'),
+    //   Set: resolve('./node_modules/core-js/features/set'),
+    //   Map: resolve('./node_modules/core-js/features/map')
+    // }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV)
