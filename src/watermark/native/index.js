@@ -2,10 +2,12 @@
 import loadWaterMark from '@method/loadWaterMark';
 import initWaterMark from '@method/initWaterMark';
 import paramsFormat from '@method/paramsFormat';
+import Monitor from '@method/MutationObserver';
 import getWidthAndHeight from '@utils/getWidthAndHeight';
-import { canRedraw, drawCanvas, drawSvg } from '@utils/draw';
+import { canRedraw, drawCanvas, drawSvg, drawShadow } from '@utils/draw';
 // import { addEventListen } from '@utils/eventListener';
-import style from '@styles';
+
+const isSvg = !!window['ActiveXObject'];
 
 function NativeWaterMark(container, props = {}) {
   if (arguments.length === 0) {
@@ -28,23 +30,33 @@ function NativeWaterMark(container, props = {}) {
 
 NativeWaterMark.prototype = {
   constructor: NativeWaterMark,
-  canvas: document.createElement('canvas'),
+  environment: 'native',
   initWaterMark: initWaterMark('waterMark'),
   init: function(container, props) {
-    this.canvas.className = style.waterMark;
-    !window['ActiveXObject'] && document.body.appendChild(this.canvas);
     this.data = paramsFormat(props);
-    if(container && container.appendChild){
-      this.data.container = container;
-    }
     this.noRender = !this.data.text;
+    // drawShadow
+    this.isShadowDom = drawShadow.isShadowDom;
+    this.randomId = drawShadow.randomId();
+    if(this.isShadowDom){
+      const div = document.createElement('div');
+      div.id = this.randomId;
+      div.style = 'pointer-events: none !important; display: block !important;';
+      this.shadowDom = {
+        current: div
+      };
+      drawShadow.renderShadow.call(this);
+    }else{
+      this.shadowDom = { current: null };
+    }
     if (this.noRender) {
       return false;
     }
-    this.ie = !!window['ActiveXObject'] || 'ActiveXObject' in window;
+    this.ie = isSvg || 'ActiveXObject' in window;
     // ie11以下不兼容pointer-event,故使用svg
-    this.draw = window['ActiveXObject'] ? drawSvg : drawCanvas;
-
+    this.draw = isSvg ? drawSvg : drawCanvas;
+    container.appendChild(this.isShadowDom ? this.shadowDom.current : drawShadow.renderShadow.call(this));
+    this.Monitor = Monitor.bind(this, drawShadow),
     this.initWaterMark();
     this.loadWaterMark();
   },
@@ -75,6 +87,7 @@ NativeWaterMark.prototype = {
       this.initWaterMark();
       return false;
     }
+    this.Monitor();
     // 更新屏幕宽高
     const { width, height } = getWidthAndHeight();
     this.width = width;

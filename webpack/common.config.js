@@ -64,7 +64,16 @@ export default {
         include: resolve('/src'),
         use: [
           {
-            loader: 'style-loader'
+            loader: 'style-loader',
+            options: {
+              injectType: 'singletonStyleTag',
+              // 获取样式 并 插入全局
+              insert: function(element) {
+                const parent = document.querySelector('head');
+                parent.appendChild(element);
+                window._styleElementInsertedByStyleLoader = element;
+              }
+            }
           },
           {
             loader: 'css-loader',

@@ -15,7 +15,7 @@ new Vue({
     return {
       value: true,
       options: {
-        angle: -15
+        angle: -30
       },
       textStyle: {
         textAlign: 'center'
@@ -25,7 +25,13 @@ new Vue({
   }
 });
 NativeWaterMark(document.body, {
-  text: ['testUserName', '1234567890']
+  text: ['testUserName', '1234567890'],
+  options: {
+    angle: 0
+  },
+  textStyle: {
+    fontWeight: 900
+  }
 });
 const render = (() => {
   const root = document.querySelector('#root');

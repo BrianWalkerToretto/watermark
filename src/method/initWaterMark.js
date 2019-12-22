@@ -3,9 +3,8 @@ import { getDevicePixelRatio } from '@utils/devicePixelRatio';
 
 export default function initWaterMark(renderName) {
   return function() {
-    this.can =
-      (this.canvas && this.canvas.current) || (this.$refs && this.$refs.canvas);
-    if (this.canvas && this.canvas.tagName === 'CANVAS') {
+    this.can = (this.canvas && this.canvas.current) || (this.$refs && this.$refs.canvas);
+    if (this.canvas && this.canvas.tagName && ['canvas', 'svg'].includes(this.canvas.tagName.toLowerCase())) {
       this.can = this.canvas;
     }
     if (!this.can) {

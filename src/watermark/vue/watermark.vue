@@ -1,6 +1,7 @@
 <template>
-  <svg v-if="noie11" :class="$style['waterMark']" ref="canvas"></svg>
-  <canvas v-else :class="$style['waterMark']" ref="canvas"></canvas>
+  <div v-if="isShadowDom" ref="shadowDom" :id="randomId" style="pointer-events: none !important; display: block !important"></div>
+  <svg v-else-if="noie11" :class="$style['waterMark']" :id="randomId" ref="canvas"></svg>
+  <canvas v-else :class="$style['waterMark']" :id="randomId" ref="canvas"></canvas>
 </template>
 
 <script>
@@ -8,14 +9,16 @@
 import loadWaterMark from '@method/loadWaterMark';
 import initWaterMark from '@method/initWaterMark';
 import paramsFormat from '@method/paramsFormat';
+import Monitor from '@method/MutationObserver';
 import getWidthAndHeight from '@utils/getWidthAndHeight';
-import { canRedraw, drawCanvas, drawSvg } from '@utils/draw';
+import { canRedraw, drawCanvas, drawSvg, drawShadow } from '@utils/draw';
 // import { addEventListen } from '@utils/eventListener';
 
 export default {
   name: 'WaterMark',
   data() {
     return {
+      isShadowDom: false,
       noie11: false
     };
   },
@@ -47,10 +50,16 @@ export default {
     this.textstyle && (params.textStyle = this.textstyle);
     this.data = paramsFormat(params);
     this.noRender = !this.data.text;
+    // 环境
+    this.environment = 'vue';
+    // drawShadow
+    this.isShadowDom = drawShadow.isShadowDom;
+    this.randomId = drawShadow.randomId();
     if (this.noRender) {
       this.mounted = () => {};
       return false;
     }
+    this.Monitor = Monitor.bind(this, drawShadow);
     this.initWaterMark();
     this.loadWaterMark();
   },
@@ -68,6 +77,9 @@ export default {
     this.interval = setInterval(() => {
       redraw() && this.waterMark();
     }, 500);
+    // 启用shadow dom
+    this.shadowDom = this.$refs.shadowDom;
+    this.isShadowDom && this.shadowDom && drawShadow.renderShadow.call(this);
   },
   beforeDestroy: function(){
     typeof this.clearInterval === 'function' && this.clearInterval();
@@ -80,6 +92,7 @@ export default {
         this.initWaterMark();
         return false;
       }
+      this.Monitor();
       // 更新屏幕宽高
       const { width, height } = getWidthAndHeight();
       this.width = width;

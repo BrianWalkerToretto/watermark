@@ -8,8 +8,14 @@ export default function drawCanvas() {
   // this.can.style = `width: ${this.width}px;height: ${this.height}px;`;
   // strict 模式下不允许分配到只读属性
   // ie浏览器的滚动栏占用8px
-  this.can.style.width = `${this.width - (this.ie ? 8 : 0)}px`;
-  this.can.style.height = `${this.height - (this.ie ? 8 : 0)}px`;
+  this.can.setAttribute(
+    'style',
+    `width: ${
+      this.width - (this.ie ? 8 : 0)
+    }px;height: ${
+      this.height - (this.ie ? 8 : 0)
+    }px;pointer-events: none !important;display: block !important;`
+  );
   !!(''+options.zIndex) && (this.can.style.zIndex = options.zIndex);
   ctx.beginPath();
 

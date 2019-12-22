@@ -1,34 +1,31 @@
-import style from '@styles';
-
 export default function drawSvg() {
-  const {
-    can,
-    data: { container, text, textStyle, options }
+  let {
+    // can => svg
+    can: svg,
+    data: { text, textStyle, options }
   } = this;
-  // 获取svg 如果该svg不存在，则创建svg 并且设置style
-  let svg = can;
-  let isCreateSvg = false;
-  if (!svg || svg.tagName.toLowerCase() !== 'svg') {
-    svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('id', 'svgWaterMark');
-    svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-    svg.setAttribute('version', '1.1');
-    isCreateSvg = true;
-    this.can = svg;
-  }
+  // let isCreateSvg = false;
+  // if (!svg || svg.tagName.toLowerCase() !== 'svg') {
+  //   svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  //   svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  //   svg.setAttribute('version', '1.1');
+  //   isCreateSvg = true;
+  //   this.can = svg;
+  // }
   // svg.className = style.waterMark;
-  svg.setAttribute('class', style.waterMark);
+  // svg.setAttribute('class', style.waterMark);
   svg.setAttribute(
     'style',
     `font-weight:${textStyle.fontWeight};font-size:${
       textStyle.fontSize
-    };font-family:${textStyle.font};
-    background:${textStyle.background};
-    text-align:${textStyle.textAlign};vertical-align:middle;
-    opacity:${options.alpha || 0.8};
-    width:${this.width - (this.ie ? 8 : 0)}px;
-    height:${this.height - (this.ie ? 8 : 0)}px;
-    ${options.zIndex ? `z-index:${options.zIndex};` : ''}`
+    };font-family:${textStyle.font};background:${
+      textStyle.background
+    };text-align:${textStyle.textAlign};vertical-align:middle;opacity:${
+      options.alpha || 0.8
+    };width:${this.width - (this.ie ? 8 : 0)}px;height:${
+      this.height - (this.ie ? 8 : 0)
+    }px;${options.zIndex ? `z-index:${options.zIndex};` : ''
+    }pointer-events: none !important;display: block !important;`
   );
 
   // col row
@@ -75,7 +72,7 @@ export default function drawSvg() {
   svg.setAttribute('fill', textStyle.color);
   svg.textContent = '';
   svg.appendChild(fragment);
-  if (isCreateSvg) {
-    container.appendChild(svg);
-  }
+  // if (isCreateSvg) {
+  //   container.appendChild(svg);
+  // }
 }
