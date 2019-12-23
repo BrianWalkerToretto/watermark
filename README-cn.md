@@ -138,9 +138,11 @@ rows  |  0   | number  | 水印行数 | N
 cols  |  0   | number  | 水印列数 | N
 
 ### 版本及功能
++ 版本v 1.0.1（正式版） 更新时间：2019.12.23
+  + 版本v 0.5.0@beta 更新成正式版
 + 版本v 0.5.0@beta 更新时间：2019.12.22
   + 新增 影子dom（shadow dom） 和 防删除功能（MutationObserver）
-+ 版本v 0.4.3 更新时间：2019.12.20
++ 版本v 0.4.3（第一个正式版）更新时间：2019.12.20
   + 参数优化
 > 注：react + react-router + ie11特定情况下有bug，提示：DOMException NOTFOUNDERR（NOT_FOUND_ERR）
 > 示例：解决方法
@@ -169,11 +171,12 @@ class App extends React.Component {
 ```
 
 ### Todo
-<!-- -   [ ] ie8 -->
 -   [ ] 判断网页宽高变化
 -   [ ] 实现 react hooks 版本
 -   [ ] 拓展更多小程序平台
 -   [ ] api 拓展
+-   [ ] react + react-router + ie11特定情况下有bug，提示：DOMException NOTFOUNDERR
+-   [ ] 防删除功能优化：多watermark组件下会随机更新各个水印组件（目标：谁改动谁更新）
 
 ### 工程TODO
 - [❎] 引入typescript/tslint

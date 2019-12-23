@@ -137,9 +137,11 @@ rows  |  0   | number  | watermark lines | N
 cols  |  0   | number  | watermark columns | N
 
 ### Version and features
++ version 1.0.1 (official version) update time：2019.12.23
+  + version 0.5.0@beta Update to the official version
 + version 0.5.0@beta update time：2019.12.22
   + add shadow DOM and Anti-deletion function（MutationObserver）
-+ version 0.4.3 update time：2019.12.20
++ version 0.4.3(first official edition) update time：2019.12.20
   + parameter optimization
 > notice：React + reaction-router + ie11 has bugs in specific situations，prompt：DOMException NOTFOUNDERR（NOT_FOUND_ERR）
 > Example: solution
@@ -165,13 +167,15 @@ class App extends React.Component {
     return <WaterMark text={['testUserName', 1234567890]} />;
   }
 }
+```
 
 ### Todo
-<!-- -   [ ] ie8 -->
 -   [ ] Determine page width and height changes
 -   [ ] implementation react hooks version
 -   [ ] Developing more minprogram platform
 -   [ ] The API development
+-   [ ] react + react-router + ie11 there is a bug in a specific case, prompt: DOMException NOTFOUNDERR
+-   [ ] Anti-deletion function optimization: each watermark component will be updated randomly under the multi-watermark component (target: who changes who updates)
 
 ### 工程TODO
 - [❎] The introduction of typescript/tslint
