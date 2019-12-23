@@ -142,6 +142,31 @@ cols  |  0   | number  | 水印列数 | N
   + 新增 影子dom（shadow dom） 和 防删除功能（MutationObserver）
 + 版本v 0.4.3 更新时间：2019.12.20
   + 参数优化
+> 注：react + react-router + ie11特定情况下有bug，提示：DOMException NOTFOUNDERR（NOT_FOUND_ERR）
+> 示例：解决方法
+```js
+// 需要在WaterMark组件外包一层div
+import Routes from './router';
+import WaterMark from '@brian-walker-toretto/watermark';
+// Routes：路由
+class App extends React.Component {
+  constructor(props:any){
+    super(props);
+  }
+  render(){
+    // <>Routes + WaterMark</> 这种情况下ie11可能有bug
+    return <><Routes />{this.renderWaterMark()}</>;
+  }
+  renderWaterMark = () => {
+    const ie11 = 'ActiveXObject' in window && !window['ActiveXObject']; // ie11
+    if(ie11){
+      // 需要在WaterMark组件外包一层div
+      return <div><WaterMark text={['testUserName', 1234567890]} /></div>;
+    }
+    return <WaterMark text={['testUserName', 1234567890]} />;
+  }
+}
+```
 
 ### Todo
 <!-- -   [ ] ie8 -->

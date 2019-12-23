@@ -141,6 +141,30 @@ cols  |  0   | number  | watermark columns | N
   + add shadow DOM and Anti-deletion function（MutationObserver）
 + version 0.4.3 update time：2019.12.20
   + parameter optimization
+> notice：React + reaction-router + ie11 has bugs in specific situations，prompt：DOMException NOTFOUNDERR（NOT_FOUND_ERR）
+> Example: solution
+```js
+// You need to outsource a layer div in the WaterMark component
+import Routes from './router';
+import WaterMark from '@brian-walker-toretto/watermark';
+// Routes：react-router
+class App extends React.Component {
+  constructor(props:any){
+    super(props);
+  }
+  render(){
+    // <>Routes + WaterMark</> There may be bugs in ie11 in this case
+    return <><Routes />{this.renderWaterMark()}</>;
+  }
+  renderWaterMark = () => {
+    const ie11 = 'ActiveXObject' in window && !window['ActiveXObject']; // ie11
+    if(ie11){
+      // You need to outsource a layer div in the WaterMark component
+      return <div><WaterMark text={['testUserName', 1234567890]} /></div>;
+    }
+    return <WaterMark text={['testUserName', 1234567890]} />;
+  }
+}
 
 ### Todo
 <!-- -   [ ] ie8 -->

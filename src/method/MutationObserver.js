@@ -42,11 +42,7 @@ export default function Monitor(drawShadow) {
 
       if(parent){
         if(child){
-          try {
-            parent.replaceChild(shadowDom, child);
-          }catch(e){
-            // parent.appendChild(shadowDom);
-          }
+          parent.replaceChild(shadowDom, child);
         }else{
           parentRoot.appendChild(shadowDom);
         }
