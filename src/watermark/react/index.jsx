@@ -44,7 +44,7 @@ export default class WaterMark extends (typeof React === 'object'
 
   render() {
     if(this.isShadowDom){
-      return <div id={this.randomId} ref={this.shadowDom}></div>
+      return <div id={this.randomId} ref={this.shadowDom}></div>;
     }
     if (window['ActiveXObject']) {
       return <svg id={this.randomId} className={style.waterMark} ref={this.canvas}></svg>;

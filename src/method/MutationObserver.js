@@ -42,9 +42,13 @@ export default function Monitor(drawShadow) {
 
       if(parent){
         if(child){
-          parent.replaceChild(shadowDom, child);
+          try {
+            parent.replaceChild(shadowDom, child);
+          }catch(e){
+            // parent.appendChild(shadowDom);
+          }
         }else{
-          parentRoot.appendChild(shadowDom, child);
+          parentRoot.appendChild(shadowDom);
         }
       }else{
         // 当元素被删除之后需要保持原处：parentRoot
