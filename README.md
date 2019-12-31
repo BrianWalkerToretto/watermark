@@ -137,6 +137,9 @@ rows  |  0   | number  | watermark lines | N
 cols  |  0   | number  | watermark columns | N
 
 ### Version and features
++ version 1.1.0 (official version) update time：2019.12.31
+  + Anti-deletion function optimization: only watermark nodes are processed
+  + Style optimization: element stylization to prevent style nodes from being deleted
 + version 1.0.1 (official version) update time：2019.12.23
   + version 0.5.0@beta Update to the official version
 + version 0.5.0@beta update time：2019.12.22
