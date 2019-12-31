@@ -34,7 +34,7 @@ export default function Monitor(drawShadow) {
     );
     if (
       // mutations.length === 1表示：水印元素变动，但当存在多个水印时有时无法确定那个水印变动，故全部更新水印
-      isShadow || mutations.length === 1 || removedNodes
+      isShadow || mutations.length === 1 && mutations[0].target.id === this.randomId || removedNodes
     ) {
       const child = document.querySelector(`#${this.randomId}`);
       const parent = child ? (child.parentElement || child.parentNode) : null;

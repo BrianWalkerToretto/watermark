@@ -1,3 +1,5 @@
+import styles from '@styles/index.js';
+
 export default function drawCanvas() {
   const {
     ctx,
@@ -10,11 +12,11 @@ export default function drawCanvas() {
   // ie浏览器的滚动栏占用8px
   this.can.setAttribute(
     'style',
-    `width: ${
+    `${styles};width: ${
       this.width - (this.ie ? 8 : 0)
     }px;height: ${
       this.height - (this.ie ? 8 : 0)
-    }px;pointer-events: none !important;display: block !important;`
+    }px;`
   );
   !!(''+options.zIndex) && (this.can.style.zIndex = options.zIndex);
   ctx.beginPath();

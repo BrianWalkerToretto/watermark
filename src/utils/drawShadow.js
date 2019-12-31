@@ -1,4 +1,4 @@
-import style from '@styles';
+import style from '@styles/index.less';
 
 export default {
   isShadowDom: typeof document.createElement('div').attachShadow === 'function',

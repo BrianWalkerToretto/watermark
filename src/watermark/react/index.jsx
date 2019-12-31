@@ -7,7 +7,7 @@ import Monitor from '@method/MutationObserver';
 import getWidthAndHeight from '@utils/getWidthAndHeight';
 import { canRedraw, drawCanvas, drawSvg, drawShadow } from '@utils/draw';
 // import { addEventListen } from '@utils/eventListener';
-import style from '@styles';
+import style from '@styles/index.less';
 
 // 保证script的native使用
 export default class WaterMark extends (typeof React === 'object'

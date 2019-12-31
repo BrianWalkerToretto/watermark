@@ -1,3 +1,5 @@
+import styles from '@styles/index.js';
+
 export default function drawSvg() {
   let {
     // can => svg
@@ -16,7 +18,9 @@ export default function drawSvg() {
   // svg.setAttribute('class', style.waterMark);
   svg.setAttribute(
     'style',
-    `font-weight:${textStyle.fontWeight};font-size:${
+    `${styles};font-weight:${
+      textStyle.fontWeight
+    };font-size:${
       textStyle.fontSize
     };font-family:${textStyle.font};background:${
       textStyle.background
@@ -25,7 +29,7 @@ export default function drawSvg() {
     };width:${this.width - (this.ie ? 8 : 0)}px;height:${
       this.height - (this.ie ? 8 : 0)
     }px;${options.zIndex ? `z-index:${options.zIndex};` : ''
-    }pointer-events: none !important;display: block !important;`
+    };`
   );
 
   // col row
