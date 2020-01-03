@@ -18,7 +18,7 @@ export default {
     }
     if(shadowDom){
       (this.shadowDom.current || this.shadowDom).style && (this.shadowDom.current || this.shadowDom).setAttribute('style', 'pointer-events: none !important;display: block !important;');
-      (shadowDom.shadowRoot || shadowDom).innerHTML = `<style>${shadowStyle ? shadowStyle.innerHTML : ''}</style>`;
+      (shadowDom.shadowRoot || shadowDom).innerHTML = `<style id='${this.randomId}'>${shadowStyle ? shadowStyle.innerHTML : ''}</style>`;
       // (shadowDom.shadowRoot || shadowDom).adoptedStyleSheets = [everythingTomato];
     }
 
