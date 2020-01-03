@@ -7,12 +7,15 @@ const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const merge = require('webpack-merge');
 // const nodeExternals  = require('webpack-node-externals');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const NodeEnvironmentJudgePlugin = require('./node-environment-judge-plugin');
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = merge(WebpackCommonConfig, {
   entry: getAllWaterMark(resolve('/src/watermark')),
   plugins: [
+    // node环境判断，解决服务器端渲染window bug
+    new NodeEnvironmentJudgePlugin(),
     //根据模块相对路径生成四位数hash值作为模块id
     new webpack.HashedModuleIdsPlugin(),
     new LodashModuleReplacementPlugin(),

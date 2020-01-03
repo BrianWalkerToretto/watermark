@@ -137,6 +137,9 @@ rows  |  0   | number  | watermark lines | N
 cols  |  0   | number  | watermark columns | N
 
 ### Version and features
++ version 1.1.1 (official version) update time：2020.01.03
+  + fix Packaging file environment issues: webpack output globalObject specified `typeof self !== 'undefined' ? self : this`(globalObject default window)
+  + fix Server-side rendering issues: Because there is no window/document environment on the server side，See the package file for details
 + version 1.1.0 (official version) update time：2019.12.31
   + Anti-deletion function optimization: only watermark nodes are processed
   + Style optimization: element stylization to prevent style nodes from being deleted

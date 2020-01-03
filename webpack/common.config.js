@@ -26,6 +26,7 @@ export default {
   devtool: isProd ? 'cheap-module-source-map' : 'cheap-module-eval-source-map', // 控制是否生成，以及如何生成 source map
   output: {
     path: resolve('/dist'),
+    globalObject: `typeof self !== 'undefined' ? self : this`, // globalObject默认window，服务器端渲染无window，报错，用此方法可以解决
     pathinfo: !isProd,
     filename: '[name].js', // 输出文件的文件名
     // chunkFilename: IS_PROD ? 'chunks/[name].[contenthash:8].js' : '[name].js', // 非入口(non-entry) chunk 文件的名称

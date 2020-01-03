@@ -138,6 +138,9 @@ rows  |  0   | number  | 水印行数 | N
 cols  |  0   | number  | 水印列数 | N
 
 ### 版本及功能
++ 版本v  1.1.1（正式版） 更新时间：2020.01.03
+  + 修复打包文件环境问题：webpack output globalObject指定`typeof self !== 'undefined' ? self : this`(globalObject default window)
+  + 修复服务器端渲染问题: 由于服务器端并没有window/document等环境，具体查看打包文件
 + 版本v 1.1.0（正式版） 更新时间：2019.12.31
   + 防删除功能优化：只处理水印节点
   + 样式优化：元素style化，防止样式节点被删除问题
