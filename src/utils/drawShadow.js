@@ -1,4 +1,5 @@
 import style from '@styles/index.less';
+import { show } from '@styles/index.js';
 
 export default {
   isShadowDom: typeof document.createElement('div').attachShadow === 'function',
@@ -17,7 +18,7 @@ export default {
       shadowDom = this.environment === 'vue' ? this.shadowDom : this.shadowDom.current;
     }
     if(shadowDom){
-      (this.shadowDom.current || this.shadowDom).style && (this.shadowDom.current || this.shadowDom).setAttribute('style', 'pointer-events: none !important;display: block !important;');
+      (this.shadowDom.current || this.shadowDom).style && (this.shadowDom.current || this.shadowDom).setAttribute('style', show);
       (shadowDom.shadowRoot || shadowDom).innerHTML = `<style id='${this.randomId}'>${shadowStyle ? shadowStyle.innerHTML : ''}</style>`;
       // (shadowDom.shadowRoot || shadowDom).adoptedStyleSheets = [everythingTomato];
     }

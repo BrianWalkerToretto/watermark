@@ -5,6 +5,7 @@ import paramsFormat from '@method/paramsFormat';
 import Monitor from '@method/MutationObserver';
 import getWidthAndHeight from '@utils/getWidthAndHeight';
 import { canRedraw, drawCanvas, drawSvg, drawShadow } from '@utils/draw';
+import { show } from '@styles/index.js';
 // import { addEventListen } from '@utils/eventListener';
 
 const isSvg = !!window['ActiveXObject'];
@@ -41,7 +42,7 @@ NativeWaterMark.prototype = {
     if(this.isShadowDom){
       const div = document.createElement('div');
       div.id = this.randomId;
-      div.style = 'pointer-events: none !important; display: block !important;';
+      div.style = show;
       this.shadowDom = {
         current: div
       };

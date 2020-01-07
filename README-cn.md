@@ -138,6 +138,9 @@ rows  |  0   | number  | 水印行数 | N
 cols  |  0   | number  | 水印列数 | N
 
 ### 版本及功能
++ version 1.1.2（正式版） 更新时间：2020.01.03
+  + fix package.json main: /dist/watermark.js 改成 dist/watermark.js（服务器端渲染时无法Cannot find module）
+  + 请不要使用0.9.0版本，因为它是测试版本
 + 版本v  1.1.1（正式版） 更新时间：2020.01.03
   + 修复打包文件环境问题：webpack output globalObject指定`typeof self !== 'undefined' ? self : this`(globalObject default window)
   + 修复服务器端渲染问题: 由于服务器端并没有window/document等环境，具体查看打包文件
@@ -190,6 +193,5 @@ class App extends React.Component {
 - [❎] 单元测试jest
 
 ### 任务 TODO
-- [❎] 防删除（开发中，使用MutationObserver）
 - [❎] 暗水印
 - [❎] 性能优化

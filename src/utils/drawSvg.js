@@ -26,7 +26,7 @@ export default function drawSvg() {
       textStyle.background
     };text-align:${textStyle.textAlign};vertical-align:middle;opacity:${
       options.alpha || 0.8
-    };width:${this.width - (this.ie ? 8 : 0)}px;height:${
+    } !important;;width:${this.width - (this.ie ? 8 : 0)}px;height:${
       this.height - (this.ie ? 8 : 0)
     }px;${options.zIndex ? `z-index:${options.zIndex};` : ''
     };`

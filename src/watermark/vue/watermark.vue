@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isShadowDom" ref="shadowDom" :id="randomId" style="pointer-events: none !important; display: block !important"></div>
+  <div v-if="isShadowDom" ref="shadowDom" :id="randomId" style="show"></div>
   <svg v-else-if="noie11" :class="$style['waterMark']" :id="randomId" ref="canvas"></svg>
   <canvas v-else :class="$style['waterMark']" :id="randomId" ref="canvas"></canvas>
 </template>
@@ -12,12 +12,14 @@ import paramsFormat from '@method/paramsFormat';
 import Monitor from '@method/MutationObserver';
 import getWidthAndHeight from '@utils/getWidthAndHeight';
 import { canRedraw, drawCanvas, drawSvg, drawShadow } from '@utils/draw';
+import { show } from '@styles/index.js';
 // import { addEventListen } from '@utils/eventListener';
 
 export default {
   name: 'WaterMark',
   data() {
     return {
+      show,
       isShadowDom: false,
       noie11: false
     };

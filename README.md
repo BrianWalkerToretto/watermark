@@ -137,6 +137,9 @@ rows  |  0   | number  | watermark lines | N
 cols  |  0   | number  | watermark columns | N
 
 ### Version and features
++ version 1.1.2 (official version) update time：2020.01.03
+  + fix package.json main: /dist/watermark.js to dist/watermark.js(Cannot find module when rendering on the server side)
+  + Please do not use version 0.9.0 as it is the test version
 + version 1.1.1 (official version) update time：2020.01.03
   + fix Packaging file environment issues: webpack output globalObject specified `typeof self !== 'undefined' ? self : this`(globalObject default window)
   + fix Server-side rendering issues: Because there is no window/document environment on the server side，See the package file for details
@@ -189,7 +192,6 @@ class App extends React.Component {
 - [❎] Unit testing：jest
 
 ### 任务 TODO
-- [❎] To prevent delete(In development, use MutationObserver)
 - [❎] Dark watermark
 - [❎] Performance optimization
 

@@ -7,7 +7,7 @@ import Monitor from '@method/MutationObserver';
 import getWidthAndHeight from '@utils/getWidthAndHeight';
 import { canRedraw, drawCanvas, drawSvg, drawShadow } from '@utils/draw';
 // import { addEventListen } from '@utils/eventListener';
-import style from '@styles/index.less';
+import style, { show } from '@styles/index.less';
 
 // 保证script的native使用
 export default class WaterMark extends (typeof React === 'object'
@@ -68,7 +68,7 @@ export default class WaterMark extends (typeof React === 'object'
     }, 500);
     // 启用shadow dom
     if(this.isShadowDom && this.shadowDom.current){
-      this.shadowDom.current.style="pointer-events: none !important; display: block !important";
+      this.shadowDom.current.style = show;
       drawShadow.renderShadow.call(this);
     }
   }

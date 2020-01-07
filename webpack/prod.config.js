@@ -3,7 +3,7 @@ const os = require('os');
 import webpack from 'webpack';
 import WebpackCommonConfig, { resolve } from './common.config';
 import getAllWaterMark from './getAllWaterMark';
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+// const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const merge = require('webpack-merge');
 // const nodeExternals  = require('webpack-node-externals');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
@@ -18,7 +18,7 @@ module.exports = merge(WebpackCommonConfig, {
     new NodeEnvironmentJudgePlugin(),
     //根据模块相对路径生成四位数hash值作为模块id
     new webpack.HashedModuleIdsPlugin(),
-    new LodashModuleReplacementPlugin(),
+    // new LodashModuleReplacementPlugin(),
     new webpack.LoaderOptionsPlugin({
       minimize: true
     })
