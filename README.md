@@ -137,6 +137,8 @@ rows  |  0   | number  | watermark lines | N
 cols  |  0   | number  | watermark columns | N
 
 ### Version and features
++ version 1.1.3 (official version) update time：2020.01.09
+  + Enhanced anti-delete/anti-hide function
 + version 1.1.2 (official version) update time：2020.01.03
   + fix package.json main: /dist/watermark.js to dist/watermark.js(Cannot find module when rendering on the server side)
   + Please do not use version 0.9.0 as it is the test version
