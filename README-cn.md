@@ -138,7 +138,7 @@ rows  |  0   | number  | 水印行数 | N
 cols  |  0   | number  | 水印列数 | N
 
 ### 版本及功能
-+ version 1.1.3（正式版） 更新时间：2020.01.09
++ version 1.1.5（正式版） 更新时间：2020.01.09
   + 加强防删除/防隐藏功能
 + version 1.1.2（正式版） 更新时间：2020.01.03
   + fix package.json main: /dist/watermark.js 改成 dist/watermark.js（服务器端渲染时无法Cannot find module）
