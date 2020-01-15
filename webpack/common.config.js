@@ -2,6 +2,9 @@ const path = require('path');
 const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 
+// 优化/压缩 css 的插件，使用该插件不仅压缩出来的 css 拥有很好的格式，而且压缩过程中采用的多种优化策略来保证 css 文件体积尽量的小
+// const OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin");//压缩css
+
 function resolve(dir) {
   return path.join(__dirname, '../', dir);
 }
@@ -121,6 +124,10 @@ export default {
     ]
   },
   plugins: [
+    // new OptimizeCSSPlugin({
+    //   assetNameRegExp: /\.css$/g,
+    //   cssProcessor: require("cssnano")
+    // }),
     new VueLoaderPlugin(),
     // scope hoisting
     new webpack.optimize.ModuleConcatenationPlugin(), //  webpack 3
