@@ -137,6 +137,9 @@ rows  |  0   | number  | watermark lines | N
 cols  |  0   | number  | watermark columns | N
 
 ### Version and features
++ version 1.1.6 (official version) update time：2020.01.17
+  + fixed ie11 anti-deletion bug (replaceChild has delay)
+  + compression: reduces size by 1-2k
 + version 1.1.5 (official version) update time：2020.01.09
   + Enhanced anti-delete/anti-hide function
 + version 1.1.2 (official version) update time：2020.01.03
