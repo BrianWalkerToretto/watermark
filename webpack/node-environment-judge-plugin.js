@@ -31,7 +31,15 @@ class NodeEnvironmentJudgePlugin {
           let content = compilation.assets[filePathName].source() || '';
           // 模块开始前添加node判断，用于服务器端渲染
           const text = `try{ if(typeof global === 'object' && window !== global){return null;} }catch(e){return null;}`;
-
+          // const text = `
+          // // react vue
+          // try{
+          //   if(typeof global === 'object' && window !== global){
+          //     return arguments[0] && arguments[0].Fragment || null;
+          //   }
+          // }catch(e){
+          //   return arguments[0] && arguments[0].Fragment || null;
+          // }`;
           content = content.replace(/\.*\)\{(\.*)return/i, `){${text}return`)
           // 重写指定输出模块内容
           compilation.assets[filePathName] = {

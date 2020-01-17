@@ -9,7 +9,7 @@ const merge = require('webpack-merge');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const NodeEnvironmentJudgePlugin = require('./node-environment-judge-plugin');
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = merge(WebpackCommonConfig, {
   entry: getAllWaterMark(resolve('/src/watermark')),
@@ -90,7 +90,8 @@ module.exports = merge(WebpackCommonConfig, {
         sourceMap: false,
         cache: true,
         parallel: os.cpus().length
-      })
+      }),
+      new TerserPlugin()
     ]
     // minimizer: [new TerserPlugin()]
   }

@@ -46,6 +46,7 @@ export default {
     // 针对 Npm 中的第三方模块优先采用 jsnext:main 中指向的 ES6 模块化语法的文件
     mainFields: ['jsnext:main', 'browser', 'main'],
     alias: {
+      'vue$': 'vue/dist/vue.esm.js',
       // react@16.6之后需要，用来修复热更新问题
       'react-dom': '@hot-loader/react-dom',
       // @images,@common,@util,@layout,@include

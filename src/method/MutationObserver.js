@@ -53,7 +53,8 @@ export default function Monitor(drawShadow) {
       this.observer.disconnect();
       this.observer = null;
       this.ctx = null;
-      this.initWaterMark('waterMark');
+      // ie11 有个小问题，replaceChild之后存在时间差，导致防删除功能失效
+      setTimeout(() => this.initWaterMark('waterMark'));
     }
   });
   this.observer.observe(document.body, options)  //监听body节点
