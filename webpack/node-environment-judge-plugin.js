@@ -29,17 +29,12 @@ class NodeEnvironmentJudgePlugin {
       for (var filePathName in compilation.assets) {
         if(/.js$/ig.test(filePathName)){
           let content = compilation.assets[filePathName].source() || '';
-          // 模块开始前添加node判断，用于服务器端渲染
-          const text = `try{ if(typeof global === 'object' && window !== global){return null;} }catch(e){return null;}`;
-          // const text = `
-          // // react vue
-          // try{
-          //   if(typeof global === 'object' && window !== global){
-          //     return arguments[0] && arguments[0].Fragment || null;
-          //   }
-          // }catch(e){
-          //   return arguments[0] && arguments[0].Fragment || null;
-          // }`;
+          // 模块开始前添加node判断，用于服务器端渲染::优化了react服务器渲染，然后vue服务器渲染没有优化
+          // const text = `try{ if(typeof global === 'object' && window !== global){return null;} }catch(e){return null;}`;
+          const env = `typeof global === 'object' && window !== global`;
+          const fragment = 'arguments[0] && arguments[0].Fragment || null;';
+          const text = `try{if(${env}){return ${fragment}}}catch(e){return ${fragment}}`;
+
           content = content.replace(/\.*\)\{(\.*)return/i, `){${text}return`)
           // 重写指定输出模块内容
           compilation.assets[filePathName] = {

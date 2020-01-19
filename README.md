@@ -137,6 +137,9 @@ rows  |  0   | number  | watermark lines | N
 cols  |  0   | number  | watermark columns | N
 
 ### Version and features
++ version 1.2.0 (official version) update time：2020.01.19
+  + Repair the default styles: opacity default value from 0.8 to 1;
+  + React server render optimization: return Fragment when server side render
 + version 1.1.6 (official version) update time：2020.01.17
   + fixed ie11 anti-deletion bug (replaceChild has delay)
   + compression: reduces size by 1-2k

@@ -138,6 +138,9 @@ rows  |  0   | number  | 水印行数 | N
 cols  |  0   | number  | 水印列数 | N
 
 ### 版本及功能
++ version 1.2.0（正式版） 更新时间：2020.01.19
+  + 修复默认样式：opacity默认值由0.8改为1;
+  + react服务器渲染优化：服务器端渲染时返回Fragment
 + version 1.1.6（正式版） 更新时间：2020.01.17
   + 修复ie11防删除失效bug（replaceChild有延迟）
   + 压缩：减少1-2k大小
